@@ -13,5 +13,7 @@ namespace CourseWork
     /// </summary>
     public partial class App : Application
     {
+        public static baseEntities Context { get; } = new baseEntities();
+        public static Users CurrentUser = null;
     }
 }
