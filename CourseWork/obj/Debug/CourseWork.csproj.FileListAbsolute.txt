@@ -1,0 +1,16 @@
+C:\Users\10200374\source\repos\CourseWork\CourseWork\bin\Debug\CourseWork.exe.config
+C:\Users\10200374\source\repos\CourseWork\CourseWork\bin\Debug\CourseWork.exe
+C:\Users\10200374\source\repos\CourseWork\CourseWork\bin\Debug\CourseWork.pdb
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.AssemblyReference.cache
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.SuggestedBindingRedirects.cache
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\MainWindow.g.cs
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\App.g.cs
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork_MarkupCompile.cache
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork_MarkupCompile.lref
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\MainWindow.baml
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.g.resources
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.Properties.Resources.resources
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.GenerateResource.cache
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CoreCompileInputs.cache
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.exe
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.pdb
