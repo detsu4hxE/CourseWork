@@ -39,7 +39,7 @@ namespace CourseWork
             {
                 if (App.CurrentUser != null)
                     TBlockUsername.Text = App.CurrentUser.login;
-                else TBlockUsername.Text = "Гость";
+                else TBlockUsername.Text = String.Empty;
             }
             else
             {

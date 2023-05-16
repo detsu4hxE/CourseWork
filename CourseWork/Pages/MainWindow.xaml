@@ -14,8 +14,8 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="{StaticResource ColorSecondary}"></Grid>
         <Grid Grid.Row="2" Background="{StaticResource ColorSecondary}"></Grid>
-        <Image Source="/Images/icon.png" Width="100" HorizontalAlignment="Left" Margin="15 0 0 0"></Image>
-        <TextBlock Style="{StaticResource BlockCommon}" Margin="10" Name="TBlockUsername" HorizontalAlignment="Right" Width="200"></TextBlock>
+        <Image Source="/Images/icon2.png" Width="100" HorizontalAlignment="Left" Margin="15 0 0 0"></Image>
+        <TextBlock Style="{StaticResource BlockCommonMain}" Margin="10" Name="TBlockUsername" HorizontalAlignment="Right" Width="200"></TextBlock>
         <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=FrameMain, Path=Content.Title}"/>
         <Frame Name="FrameMain" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="FrameMain_ContentRendered"/>
         <Button Content="Назад" HorizontalAlignment="Center" Name="BtnBack" Click="BtnBack_Click" Grid.Row="2"></Button>

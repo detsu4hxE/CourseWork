@@ -10,17 +10,17 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
                 <TextBlock Style="{StaticResource BlockCommon}" Text="Логин:"></TextBlock>
                 <TextBox Name="TBoxLogin"></TextBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
                 <TextBlock Style="{StaticResource BlockCommon}" Text="Пароль:"></TextBlock>
                 <PasswordBox Name="PBoxPassword"></PasswordBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Name="BtnGuest" Click="BtnGuest_Click" Content="Войти как гость"/>
+            <StackPanel Orientation="Vertical">
                 <Button Name="BtnLogin" Click="BtnLogin_Click" Content="Войти"/>
+                <Button Name="BtnRegistration" Click="BtnRegistration_Click" Content="Зарегистрироваться"/>
             </StackPanel>
         </StackPanel>
     </Grid>

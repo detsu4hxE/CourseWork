@@ -39,9 +39,9 @@ namespace CourseWork.Pages
             }
         }
 
-        private void BtnGuest_Click(object sender, RoutedEventArgs e)
+        private void BtnRegistration_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new ProductPage());
+            NavigationService.Navigate(new Registration());
         }
     }
 }

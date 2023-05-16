@@ -5,6 +5,7 @@
              StartupUri="Pages/MainWindow.xaml">
     <Application.Resources>
         <SolidColorBrush x:Key="ColorAccent" Color="#FFE63D98"/>
+        <SolidColorBrush x:Key="ColorAdditional" Color="#FFFF7D98"/>
         <SolidColorBrush x:Key="ColorSecondary" Color="LightPink"/>
         <SolidColorBrush x:Key="ColorPrimary" Color="White"/>
         <Style TargetType="Button">
@@ -15,6 +16,20 @@
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
             <Setter Property="Background" Value="{StaticResource ColorAccent}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ColorAdditional}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" x:Key="BlockHeader">
             <Setter Property="Margin" Value="5"></Setter>
@@ -28,12 +43,26 @@
         <Style TargetType="TextBlock" x:Key="BlockCommon">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="BlockCommonMain">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="ErrorMessage">
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="FontSize" Value="12"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5"></Setter>
