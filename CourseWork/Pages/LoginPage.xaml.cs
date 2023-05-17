@@ -26,16 +26,30 @@ namespace CourseWork.Pages
         }
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var currentUser = App.Context.Users
-                .FirstOrDefault(p => p.login == TBoxLogin.Text && p.password == PBoxPassword.Password);
+            var currentUser = App.Context.Users.FirstOrDefault(p => p.login == TBoxLogin.Text && p.password == PBoxPassword.Password);
             if (currentUser != null)
             {
                 App.CurrentUser = currentUser;
+                var History = new History
+                {
+                    user_id = currentUser.user_id,
+                    date = DateTime.Now
+                };
+                App.Context.History.Add(History);
+                App.Context.SaveChanges();
                 //NavigationService.Navigate(new ProductPage());
             }
             else
             {
-                MessageBox.Show("Пользователь не найден.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                currentUser = App.Context.Users.FirstOrDefault(p => p.login == TBoxLogin.Text);
+                if (currentUser != null)
+                {
+                    MessageBox.Show("Неверный пароль", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не найден.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

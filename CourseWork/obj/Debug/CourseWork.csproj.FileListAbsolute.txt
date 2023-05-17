@@ -12,7 +12,6 @@ C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CoreCompileInputs.cache
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.exe
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.pdb
-C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Pages\MainWindow.g.cs
 C:\Users\10200374\source\repos\CourseWork\CourseWork\bin\Debug\EntityFramework.dll
 C:\Users\10200374\source\repos\CourseWork\CourseWork\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\10200374\source\repos\CourseWork\CourseWork\bin\Debug\EntityFramework.xml
@@ -20,9 +19,12 @@ C:\Users\10200374\source\repos\CourseWork\CourseWork\bin\Debug\EntityFramework.S
 C:\Users\10200374\source\repos\CourseWork\CourseWork\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork_Content.g.cs
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\App.baml
-C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Pages\MainWindow.baml
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CopyComplete
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Pages\LoginPage.g.cs
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Pages\LoginPage.baml
 C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\Registration.g.cs
 C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\Registration.baml
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Windows\AuthorizationWindow.g.cs
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Windows\AuthorizationWindow.baml
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Windows\MainWindow.g.cs
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Windows\MainWindow.baml

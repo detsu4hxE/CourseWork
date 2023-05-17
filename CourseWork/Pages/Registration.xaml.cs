@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.IO;
 using System.Text.RegularExpressions;
-
+using System.Data.Odbc;
 
 namespace CourseWork.Pages
 {
@@ -23,11 +23,15 @@ namespace CourseWork.Pages
     /// </summary>
     public partial class Registration : Page
     {
-        private Users _currentUser = null;
+        // Переменные для загрузки изображения
         private byte[] _mainImageData = null;
         public string img = "default_ava.jpg";
+        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName)).FullName, @"Images\");
+        public string selectefFileName;
+        public string extension = ".jpg";
         string patronymic = "NULL";
-        Regex lpCheck = new Regex(@"^\w{5,15}$");
+        // Регулярные выражения для проверки текстовых полей
+        Regex lpCheck = new Regex(@"^\w{5,30}$");
         Regex nameCheck = new Regex(@"^[A-ЯЁ][а-яё]+$");
         Regex emailCheck = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
         MatchCollection matches;
@@ -42,13 +46,13 @@ namespace CourseWork.Pages
             ofd.Filter = "Image | *.png; *.jpg; *.jpeg";
             if (ofd.ShowDialog() == true)
             {
-                string selectefFileName = ofd.FileName;
-                MessageBox.Show(selectefFileName);
+                img = Path.GetFileName(ofd.FileName);
+                extension = Path.GetExtension(img);
+                selectefFileName = ofd.FileName;
                 _mainImageData = File.ReadAllBytes(ofd.FileName);
                 ImageService.Source = new ImageSourceConverter()
                     .ConvertFrom(_mainImageData) as ImageSource;
             }
-            img = Path.GetFileName(ofd.FileName);
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -59,28 +63,32 @@ namespace CourseWork.Pages
             }
             else
             {
-                if (_currentUser == null)
+                // Проверка на наличие картинки пользователя
+                if (img != "default_ava.jpg")
                 {
-                    var User = new Users
-                    {
-                        login = TBoxLogin.Text,
-                        password = TBoxPassword.Password,
-                        role_id = 2,
-                        surname = TBoxSurname.Text,
-                        firstname = TBoxFirstname.Text,
-                        patronymic = patronymic,
-                        email = TBoxEmail.Text,
-                        image = img
-                    };
-                    if (_mainImageData != null)
-                    {
-                        User.image = img;
-                    }
-
-                    App.Context.Users.Add(User);
-                    App.Context.SaveChanges();
-                    MessageBox.Show("Пользователь успешно создан", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    img = TBoxLogin.Text + extension;
+                    path = path + img;
+                    File.Copy(selectefFileName, path);
                 }
+                var User = new Users
+                {
+                    login = TBoxLogin.Text,
+                    password = TBoxPassword.Password,
+                    role_id = 2,
+                    surname = TBoxSurname.Text,
+                    firstname = TBoxFirstname.Text,
+                    patronymic = patronymic,
+                    email = TBoxEmail.Text,
+                    image = img
+                };
+                if (_mainImageData != null)
+                {
+                    User.image = img;
+                }
+
+                App.Context.Users.Add(User);
+                App.Context.SaveChanges();
+                MessageBox.Show("Пользователь успешно создан", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.Navigate(new LoginPage());
             }
         }
@@ -104,7 +112,7 @@ namespace CourseWork.Pages
             matches = nameCheck.Matches(TBoxFirstname.Text);
             if (matches.Count == 0)
                 errorBuilder.AppendLine("Некорректно введено имя");
-            if (TBoxPatronymic == null)
+            if (TBoxPatronymic.Text == "")
             {
                 patronymic = "NULL";
             }
