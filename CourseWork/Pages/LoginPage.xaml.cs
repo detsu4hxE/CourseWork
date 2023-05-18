@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseWork.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,15 +30,24 @@ namespace CourseWork.Pages
             var currentUser = App.Context.Users.FirstOrDefault(p => p.login == TBoxLogin.Text && p.password == PBoxPassword.Password);
             if (currentUser != null)
             {
-                App.CurrentUser = currentUser;
-                var History = new History
+                if (currentUser.login.Equals(TBoxLogin.Text) && currentUser.password.Equals(PBoxPassword.Password))
                 {
-                    user_id = currentUser.user_id,
-                    date = DateTime.Now
-                };
-                App.Context.History.Add(History);
-                App.Context.SaveChanges();
-                //NavigationService.Navigate(new ProductPage());
+                    App.CurrentUser = currentUser;
+                    var History = new History
+                    {
+                        user_id = currentUser.user_id,
+                        date = DateTime.Now
+                    };
+                    App.Context.History.Add(History);
+                    App.Context.SaveChanges();
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    Window.GetWindow(this).Close();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный регистр", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {

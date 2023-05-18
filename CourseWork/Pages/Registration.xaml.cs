@@ -169,7 +169,7 @@ namespace CourseWork.Pages
 
         private void PasswordRepeat_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (TBoxPassword.Password != TBoxPasswordRepeat.Password)
+            if (TBoxPassword.Password != TBoxPasswordRepeat.Password && TBoxPasswordRepeat.Password != "")
             {
                 PasswordRepeatError.Visibility = Visibility.Visible;
             }

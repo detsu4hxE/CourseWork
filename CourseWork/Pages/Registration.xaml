@@ -18,7 +18,7 @@
                 <TextBlock Style="{StaticResource ErrorMessage}" Name="LoginError" Visibility="Collapsed" Text="Пользователь с данным логином уже существует"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource BlockCommon}" Text="Пароль *"/>
-                    <PasswordBox Name="TBoxPassword" MaxLength="30"/>
+                    <PasswordBox Name="TBoxPassword" MaxLength="30" PasswordChanged="PasswordRepeat_PasswordChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource BlockCommon}" Text="Повторите пароль"/>

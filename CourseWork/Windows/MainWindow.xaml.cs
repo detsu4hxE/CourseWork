@@ -40,5 +40,11 @@ namespace CourseWork.Windows
                 BtnBack.Visibility = Visibility.Hidden;
             }
         }
+
+        private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Ellipse ellipse = sender as Ellipse;
+            ellipse.ContextMenu.IsOpen = true;
+        }
     }
 }

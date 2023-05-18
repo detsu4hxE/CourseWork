@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="550" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="85"/>
@@ -14,8 +14,20 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="{StaticResource ColorSecondary}"></Grid>
         <Grid Grid.Row="2" Background="{StaticResource ColorSecondary}"></Grid>
-        <Image Source="/Images/icon2.png" Width="100" HorizontalAlignment="Left" Margin="15 0 0 0"></Image>
-        <!--<TextBlock Style="{StaticResource BlockCommonMain}" Margin="10" Name="TBlockUsername" HorizontalAlignment="Right" Width="200"></TextBlock>-->
+        <Image Source="/Images/icon2.png" Width="70" HorizontalAlignment="Left" Margin="15 0 0 0"></Image>
+        <Ellipse MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Width="70" Height="70" HorizontalAlignment="Right" Margin="0 0 15 0">
+            <Ellipse.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Профиль"/>
+                    <MenuItem Header="Выполненные задания"/>
+                    <MenuItem Header="История входа"/>
+                    <MenuItem Header="Выход" Foreground="#FFC83232"/>
+                </ContextMenu>
+            </Ellipse.ContextMenu>
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="/Images/default_ava.png" Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
         <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=FrameMain, Path=Content.Title}"/>
         <Frame Name="FrameMain" NavigationUIVisibility="Hidden" Grid.Row="1" ContentRendered="FrameMain_ContentRendered"/>
         <Button Content="Назад" HorizontalAlignment="Center" Name="BtnBack" Click="BtnBack_Click"  Grid.Row="2" Visibility="Hidden"></Button>
