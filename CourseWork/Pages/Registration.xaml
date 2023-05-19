@@ -45,7 +45,7 @@
             </StackPanel>
             <StackPanel VerticalAlignment="Center">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Border Margin="5" Height="200" Width="200" BorderBrush="{StaticResource ColorAccent}" BorderThickness="1">
+                    <Border Margin="5" Height="200" Width="200" BorderBrush="{StaticResource ColorAccent}" BorderThickness="1.5">
                         <Image Name="ImageService" Source="/Images/default_ava.png"/>
                     </Border>
                     <Button Height="30" Width="200" Margin="5" Name="BtnSelectImage" Click="BtnSelectImage_Click" Content="Выбрать фотографию"></Button>

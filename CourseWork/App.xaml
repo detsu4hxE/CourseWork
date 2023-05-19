@@ -9,9 +9,11 @@
         <SolidColorBrush x:Key="ColorAdditional" Color="#FFFF7D98"/>
         <SolidColorBrush x:Key="ColorSecondary" Color="LightPink"/>
         <SolidColorBrush x:Key="ColorPrimary" Color="White"/>-->
-        <SolidColorBrush x:Key="ColorAccent" Color="Black"/>
-        <SolidColorBrush x:Key="ColorAdditional" Color="Gray"/>
-        <SolidColorBrush x:Key="ColorSecondary" Color="LightGray"/>
+		
+        <SolidColorBrush x:Key="ColorAccent" Color="#8774e1"/>
+        <SolidColorBrush x:Key="ColorAdditional" Color="#7963dd"/>
+        <SolidColorBrush x:Key="ColorMain" Color="#212121"/>
+		<SolidColorBrush x:Key="ColorSecondary" Color="#181818"/>
         <SolidColorBrush x:Key="ColorPrimary" Color="White"/>
         <SolidColorBrush x:Key="MidBrsh" Color="#202020"/>
         
@@ -23,7 +25,9 @@
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
             <Setter Property="Background" Value="{StaticResource ColorAccent}"/>
-            <Setter Property="Template">
+			<Setter Property="Border.BorderThickness" Value="1" />
+			<Setter Property="Border.BorderBrush" Value="{StaticResource ColorPrimary}"/>
+			<Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}">
@@ -46,6 +50,7 @@
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
+			<Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="BlockCommon">
             <Setter Property="Margin" Value="5"/>
@@ -56,6 +61,7 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="TextAlignment" Value="Left"/>
+			<Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="BlockCommonMain">
             <Setter Property="Margin" Value="5"/>
@@ -66,6 +72,7 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="TextAlignment" Value="Right"/>
+			<Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="ErrorMessage">
             <Setter Property="Foreground" Value="Red"/>
@@ -73,6 +80,8 @@
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5"></Setter>
+			<Setter Property="Background" Value="{StaticResource ColorMain}"/>
+			<Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="16"/>
@@ -80,15 +89,19 @@
             <Setter Property="Width" Value="175"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        </Style>
+			<Setter Property="BorderBrush" Value="{StaticResource ColorPrimary}"/>
+		</Style>
         <Style TargetType="PasswordBox">
             <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="Background" Value="{StaticResource ColorMain}"/>
+			<Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="Width" Value="175"/>
             <Setter Property="Height" Value="30"/>
+			<Setter Property="BorderBrush" Value="{StaticResource ColorPrimary}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         </Style>
         <Style TargetType="ComboBox">

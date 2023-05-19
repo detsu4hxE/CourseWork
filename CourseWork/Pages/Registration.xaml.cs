@@ -77,7 +77,7 @@ namespace CourseWork.Pages
                     role_id = 2,
                     surname = TBoxSurname.Text,
                     firstname = TBoxFirstname.Text,
-                    patronymic = patronymic,
+                    patronymic = null,
                     email = TBoxEmail.Text,
                     image = img
                 };
