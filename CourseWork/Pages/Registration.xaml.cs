@@ -25,11 +25,11 @@ namespace CourseWork.Pages
     {
         // Переменные для загрузки изображения
         private byte[] _mainImageData = null;
-        public string img = "default_ava.jpg";
+        public string img = null;
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName)).FullName, @"Images\");
         public string selectefFileName;
         public string extension = ".jpg";
-        string patronymic = "NULL";
+        string patronymic = null;
         // Регулярные выражения для проверки текстовых полей
         Regex lpCheck = new Regex(@"^\w{5,30}$");
         Regex nameCheck = new Regex(@"^[A-ЯЁ][а-яё]+$");
@@ -64,7 +64,7 @@ namespace CourseWork.Pages
             else
             {
                 // Проверка на наличие картинки пользователя
-                if (img != "default_ava.jpg")
+                if (img != null)
                 {
                     img = TBoxLogin.Text + extension;
                     path = path + img;
@@ -77,14 +77,10 @@ namespace CourseWork.Pages
                     role_id = 2,
                     surname = TBoxSurname.Text,
                     firstname = TBoxFirstname.Text,
-                    patronymic = null,
+                    patronymic = patronymic,
                     email = TBoxEmail.Text,
                     image = img
                 };
-                if (_mainImageData != null)
-                {
-                    User.image = img;
-                }
 
                 App.Context.Users.Add(User);
                 App.Context.SaveChanges();
@@ -114,7 +110,7 @@ namespace CourseWork.Pages
                 errorBuilder.AppendLine("Некорректно введено имя");
             if (TBoxPatronymic.Text == "")
             {
-                patronymic = "NULL";
+                patronymic = null;
             }
             else
             {

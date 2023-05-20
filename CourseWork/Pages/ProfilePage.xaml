@@ -1,0 +1,55 @@
+﻿<Page x:Class="CourseWork.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseWork.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="Профиль">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}" Text="Логин: "/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="loginBox"/>
+                </StackPanel>
+                <TextBlock Style="{StaticResource ErrorMessage}" Name="PasswordRepeatError" Visibility="Collapsed" Text="Пароли не совпадают"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}" Text="Фамилия: "/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="surnameBox"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}" Text="Имя: "/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="firstnameBox"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="patronymicBoxTitle" Text="Отчество: " Visibility="Collapsed"/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="patronymicBox" Visibility="Collapsed"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}" Text="e-mail: "/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="emailBox"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}" Text="Количество ответов: "/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="answersAmountBox"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}" Text="Дата создания: "/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="creationDateBox"/>
+                </StackPanel>
+        </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border Margin="5" Height="200" Width="200" BorderBrush="{StaticResource ColorAccent}" BorderThickness="1.5">
+                        <Image Name="profilePicture"/>
+                    </Border>
+                    <Button Height="30" Width="200" Margin="5" Name="BtnEdit" Click="BtnEdit_Click" Content="Редактировать профиль"></Button>
+                    <Button Height="30" Width="200" Margin="5" Name="BtnDelete" Click="BtnDelete_Click" Foreground="Red" Content="Удалить аккаунт"></Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

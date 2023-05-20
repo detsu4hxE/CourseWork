@@ -14,14 +14,14 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="{StaticResource ColorSecondary}"></Grid>
         <Grid Grid.Row="2" Background="{StaticResource ColorSecondary}"></Grid>
-        <Image Source="/Images/icon2.png" Width="70" HorizontalAlignment="Right" Margin="0 0 15 0"></Image>
-        <Ellipse MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Width="70" Height="70" StrokeThickness="1" Stroke="White" HorizontalAlignment="Left" Margin="15 0 0 0">
+        <Image Source="/Images/logo.png" Width="70" HorizontalAlignment="Right" Margin="0 0 15 0"></Image>
+        <Ellipse Name="profilePicture" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Width="70" Height="70" StrokeThickness="1" Stroke="White" HorizontalAlignment="Left" Margin="15 0 0 0">
             <Ellipse.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Профиль"/>
+                    <MenuItem Header="Профиль" Click="profileBtn_Click"/>
                     <MenuItem Header="Выполненные задания"/>
                     <MenuItem Header="История входа"/>
-                    <MenuItem Header="Выход" Foreground="#FFC83232"/>
+                    <MenuItem Header="Выход" Foreground="#FFC83232" Click="exitBtn_Click"/>
                 </ContextMenu>
             </Ellipse.ContextMenu>
             <Ellipse.Fill>

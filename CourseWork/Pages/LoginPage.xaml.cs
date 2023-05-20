@@ -40,7 +40,7 @@ namespace CourseWork.Pages
                     };
                     App.Context.History.Add(History);
                     App.Context.SaveChanges();
-                    MainWindow mainWindow = new MainWindow();
+                    MainWindow mainWindow = new MainWindow(TBoxLogin.Text);
                     mainWindow.Show();
                     Window.GetWindow(this).Close();
                 }

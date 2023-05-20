@@ -58,3 +58,5 @@ C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.Core
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CopyComplete
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\CourseWork.exe
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\CourseWork.pdb
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\ProfilePage.g.cs
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\ProfilePage.baml

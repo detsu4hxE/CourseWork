@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\
 CourseWork
 none
 false
 DEBUG;TRACE
-C:\Users\USR\Source\Repos\CourseWork\CourseWork\App.xaml
-4-437183091
+C:\Users\USR\source\repos\CourseWork\CourseWork\App.xaml
+5-1178377211
 2176114631
-20-597278456
-181826430763
-Pages\LoginPage.xaml;Windows\AuthorizationWindow.xaml;Pages\Registration.xaml;Windows\MainWindow.xaml;
+21962680320
+181794760747
+Pages\LoginPage.xaml;Pages\ProfilePage.xaml;Windows\AuthorizationWindow.xaml;Pages\Registration.xaml;Windows\MainWindow.xaml;
 
 False
 

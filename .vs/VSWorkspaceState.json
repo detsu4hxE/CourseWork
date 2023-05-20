@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CourseWork",
+    "\\CourseWork\\Images",
+    "\\CourseWork\\Pages",
+    "\\CourseWork\\Properties",
+    "\\CourseWork\\Windows"
   ],
-  "SelectedNode": "\\C:\\Users\\USR\\Source\\Repos\\CourseWork",
+  "SelectedNode": "\\CourseWork\\Pages\\LoginPage.xaml",
   "PreviewInSolutionExplorer": false
 }
