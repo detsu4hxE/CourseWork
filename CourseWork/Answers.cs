@@ -16,7 +16,7 @@ namespace CourseWork
     {
         public int answer_id { get; set; }
         public int user_id { get; set; }
-        public Nullable<int> task_id { get; set; }
+        public int task_id { get; set; }
         public string code { get; set; }
         public System.DateTime date { get; set; }
     

@@ -47,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -70,10 +71,20 @@
     <Compile Include="Answers.cs">
       <DependentUpon>base.tt</DependentUpon>
     </Compile>
+    <Compile Include="base.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>base.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="base.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="base.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>base.edmx</DependentUpon>
     </Compile>
     <Compile Include="History.cs">
       <DependentUpon>base.tt</DependentUpon>
@@ -127,16 +138,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="base.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>base.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="base.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>base.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -185,16 +186,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="base.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>base.Context.cs</LastGenOutput>
-      <DependentUpon>base.edmx</DependentUpon>
-    </Content>
-    <Content Include="base.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>base.edmx</DependentUpon>
-      <LastGenOutput>base.cs</LastGenOutput>
-    </Content>
     <Resource Include="Images\logo.png" />
     <Resource Include="logo.ico" />
     <Resource Include="icon.ico" />
@@ -204,6 +195,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="base.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>base.edmx</DependentUpon>
+      <LastGenOutput>base.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="base.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>base.edmx</DependentUpon>
+      <LastGenOutput>base.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

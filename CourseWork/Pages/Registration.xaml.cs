@@ -67,6 +67,13 @@ namespace CourseWork.Pages
                 if (img != null)
                 {
                     img = TBoxLogin.Text + extension;
+                    var files = Directory.GetFiles(path);
+                    int a = 0;
+                    while (File.Exists(path + img))
+                    {
+                        a++;
+                        img = TBoxLogin.Text + $" ({a})" + extension;
+                    }
                     path = path + img;
                     File.Copy(selectefFileName, path);
                 }

@@ -22,6 +22,7 @@ namespace CourseWork.Pages
     {
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Images\");
         public string currentLogin;
+        public string img;
         public ProfilePage(string login)
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace CourseWork.Pages
             emailBox.Text = currentUser.email;
             answersAmountBox.Text = answers.Count().ToString();
             creationDateBox.Text = currentHistory.date.ToString("D");
-            var img = currentUser.image;
+            img = currentUser.image;
             if (currentUser.image == null)
             {
                 img = "default_ava.png";
@@ -65,7 +66,7 @@ namespace CourseWork.Pages
                 AuthorizationWindow authorizationWindow = new AuthorizationWindow();
                 authorizationWindow.Show();
                 Window.GetWindow(this).Close();
-                MessageBox.Show("Аккаут был удалён");
+                MessageBox.Show("Аккаунт был удален", "Внимание");
             }
         }
 

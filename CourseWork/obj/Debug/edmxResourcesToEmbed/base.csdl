@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="baseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Answers">
     <Key>
       <PropertyRef Name="answer_id" />
     </Key>
     <Property Name="answer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="user_id" Type="Int32" Nullable="false" />
-    <Property Name="task_id" Type="Int32" />
+    <Property Name="task_id" Type="Int32" Nullable="false" />
     <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Tasks" Relationship="Self.FK_Answers_Tasks" FromRole="Answers" ToRole="Tasks" />
@@ -26,7 +26,7 @@
       <PropertyRef Name="role_id" />
     </Key>
     <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
   </EntityType>
   <EntityType Name="Subjects">
@@ -52,7 +52,7 @@
       <PropertyRef Name="task_id" />
     </Key>
     <Property Name="task_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="subject_id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Tasks" FromRole="Tasks" ToRole="Answers" />
     <NavigationProperty Name="Subjects" Relationship="Self.FK_Tasks_Subjects" FromRole="Tasks" ToRole="Subjects" />
@@ -62,20 +62,22 @@
       <PropertyRef Name="user_id" />
     </Key>
     <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="role_id" Type="Int32" Nullable="false" />
-    <Property Name="surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Users" FromRole="Users" ToRole="Answers" />
     <NavigationProperty Name="History" Relationship="Self.FK_History_Users" FromRole="Users" ToRole="History" />
     <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
   </EntityType>
   <Association Name="FK_Answers_Tasks">
-    <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tasks">
@@ -87,7 +89,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Answers_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -99,7 +103,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_History_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="History" Type="Self.History" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -111,7 +117,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Users_Roles">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Roles">
@@ -123,7 +131,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Tasks_Subjects">
-    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Subjects">
@@ -178,11 +188,11 @@
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(baseModel.sp_helpdiagramdefinition_Result)">
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(baseModel.sp_helpdiagrams_Result)">
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>

@@ -35,6 +35,7 @@ namespace CourseWork.Windows
             var profilePic = new BitmapImage(new Uri(path + img, UriKind.Relative));
             (profilePicture.Fill as ImageBrush).ImageSource = profilePic;
         }
+
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             if (FrameMain.CanGoBack && MessageBox.Show($"Вы уверены, что хотите вернуться?\nНесохраненные данные могут быть утеряны",
