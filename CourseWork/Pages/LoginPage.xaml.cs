@@ -40,7 +40,7 @@ namespace CourseWork.Pages
                     };
                     App.Context.History.Add(History);
                     App.Context.SaveChanges();
-                    MainWindow mainWindow = new MainWindow(TBoxLogin.Text);
+                    MainWindow mainWindow = new MainWindow(currentUser.user_id);
                     mainWindow.Show();
                     Window.GetWindow(this).Close();
                 }
@@ -65,7 +65,7 @@ namespace CourseWork.Pages
 
         private void BtnRegistration_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Registration());
+            NavigationService.Navigate(new RegistrationPage());
         }
     }
 }

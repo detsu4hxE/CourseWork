@@ -17,7 +17,21 @@ namespace CourseWork
         public int id_history { get; set; }
         public int user_id { get; set; }
         public System.DateTime date { get; set; }
-    
+        public string Day
+        {
+            get
+            {
+                return date.ToString("D");
+            }
+        }
+        public string time
+        {
+            get
+            {
+                return date.ToString("f");
+            }
+        }
+
         public virtual Users Users { get; set; }
     }
 }

@@ -19,9 +19,9 @@ using System.Data.Odbc;
 namespace CourseWork.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Registration.xaml
+    /// Логика взаимодействия для RegistrationPage.xaml
     /// </summary>
-    public partial class Registration : Page
+    public partial class RegistrationPage : Page
     {
         // Переменные для загрузки изображения
         private byte[] _mainImageData = null;
@@ -35,7 +35,7 @@ namespace CourseWork.Pages
         Regex nameCheck = new Regex(@"^[A-ЯЁ][а-яё]+$");
         Regex emailCheck = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
         MatchCollection matches;
-        public Registration()
+        public RegistrationPage()
         {
             InitializeComponent();
         }

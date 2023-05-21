@@ -21,18 +21,18 @@ namespace CourseWork.Pages
     public partial class ProfilePage : Page
     {
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Images\");
-        public string currentLogin;
+        public int currentUserId;
         public string img;
-        public ProfilePage(string login)
+        public ProfilePage(int user_id)
         {
             InitializeComponent();
-            currentLogin = login;
+            currentUserId = user_id;
             var users = App.Context.Users.ToList();
-            var currentUser = users.Where(u => u.login == currentLogin).FirstOrDefault();
+            var currentUser = users.Where(u => u.user_id == currentUserId).FirstOrDefault();
             var answers = App.Context.Answers.ToList();
-            answers = answers.Where(a => a.user_id == currentUser.user_id).ToList();
+            answers = answers.Where(a => a.user_id == currentUserId).ToList();
             var history = App.Context.History.ToList();
-            var currentHistory = history.Where(h => h.user_id == currentUser.user_id).FirstOrDefault();
+            var currentHistory = history.Where(h => h.user_id == currentUserId).FirstOrDefault();
             loginBox.Text = currentUser.login;
             surnameBox.Text = currentUser.surname;
             firstnameBox.Text = currentUser.firstname;
@@ -57,7 +57,7 @@ namespace CourseWork.Pages
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             var users = App.Context.Users.ToList();
-            var currentUser = users.Where(u => u.login == currentLogin).FirstOrDefault();
+            var currentUser = users.Where(u => u.user_id == currentUserId).FirstOrDefault();
             if (MessageBox.Show($"Вы уверены, что хотите удалить аккаунт?",
                 "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
@@ -72,7 +72,7 @@ namespace CourseWork.Pages
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ProfileEditPage(currentUserId));
         }
     }
 }

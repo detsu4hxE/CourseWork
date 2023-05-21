@@ -20,13 +20,18 @@ namespace CourseWork.Windows
     public partial class MainWindow : Window
     {
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Images\");
-        public string currentLogin;
-        public MainWindow(string login)
+        public int currentUserId;
+        public string previousPage = "Example";
+        public MainWindow(int user_id)
         {
             InitializeComponent();
-            currentLogin = login;
+            currentUserId = user_id;
+            Update(user_id);
+        }
+        private void Update(int user_id)
+        {
             var users = App.Context.Users.ToList();
-            var currentUser = users.Where(u => u.login == currentLogin).FirstOrDefault();
+            var currentUser = users.Where(u => u.user_id == user_id).FirstOrDefault();
             var img = currentUser.image;
             if (currentUser.image == null)
             {
@@ -44,7 +49,8 @@ namespace CourseWork.Windows
         }
         private void FrameMain_ContentRendered(object sender, EventArgs e)
         {
-            if (FrameMain.Content.ToString() != "CourseWork.Pages.LoginPage")
+            Update(currentUserId);
+            if (FrameMain.Content.ToString() != "CourseWork.Pages.LoginPage" && previousPage != "CourseWork.Pages.ProfileEditPage")
             {
                 BtnBack.Visibility = Visibility.Visible;
             }
@@ -52,6 +58,7 @@ namespace CourseWork.Windows
             {
                 BtnBack.Visibility = Visibility.Hidden;
             }
+            previousPage = FrameMain.Content.ToString();
         }
 
         private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -67,7 +74,11 @@ namespace CourseWork.Windows
         }
         private void profileBtn_Click(object sender, EventArgs e)
         {
-            FrameMain.Navigate(new Pages.ProfilePage(currentLogin));
+            FrameMain.Navigate(new Pages.ProfilePage(currentUserId));
+        }
+        private void historyBtn_Click(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.HistoryPage(currentUserId));
         }
     }
 }
