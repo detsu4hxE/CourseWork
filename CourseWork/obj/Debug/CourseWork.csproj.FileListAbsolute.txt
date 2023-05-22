@@ -74,3 +74,7 @@ C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Windows\AdminWind
 C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Windows\AdminWindow.baml
 C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RolesPage.g.cs
 C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RolesPage.baml
+C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RolesPage.g.cs
+C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Windows\AdminWindow.g.cs
+C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RolesPage.baml
+C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Windows\AdminWindow.baml

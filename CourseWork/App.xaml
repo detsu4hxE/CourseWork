@@ -114,22 +114,23 @@
         <Style TargetType="TextBlock" x:Key="ErrorMessage">
             <Setter Property="Foreground" Value="Red"/>
             <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Comis Sans MS"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5"></Setter>
 			<Setter Property="Background" Value="{StaticResource ColorMain}"/>
 			<Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="Width" Value="175"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-			<Setter Property="BorderBrush" Value="{StaticResource ColorPrimary}"/>
-		</Style>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ColorPrimary}"/>
+        </Style>
         <Style TargetType="PasswordBox">
-            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
 			<Setter Property="Background" Value="{StaticResource ColorMain}"/>
 			<Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
@@ -139,17 +140,7 @@
             <Setter Property="Width" Value="175"/>
             <Setter Property="Height" Value="30"/>
 			<Setter Property="BorderBrush" Value="{StaticResource ColorPrimary}"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        </Style>
-        <Style TargetType="ComboBox">
-            <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Background" Value="{StaticResource ColorMain}"/>
-            <Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style TargetType="Image" x:Key="ProductImage">
             <Setter Property="Margin" Value="5"/>
@@ -242,15 +233,85 @@
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ColorMain}"/>
+                    <Setter Property="Background" Value="{StaticResource ColorSecondary}"/>
                     <Setter Property="BorderBrush" Value="{StaticResource ColorMain}"/>
                 </Trigger>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ColorMain}"/>
+                    <Setter Property="Background" Value="{StaticResource ColorSecondary}"/>
                     <Setter Property="BorderBrush" Value="{StaticResource ColorMain}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Background" Value="{StaticResource ColorMain}"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Border x:Name="Border" Background="{StaticResource ColorMain}" BorderBrush="{StaticResource ColorPrimary}" BorderThickness="1" />
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="DarkGray" />
+                                            </Trigger>
+                                            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="{StaticResource ColorMain}" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3"  />
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                <Grid  Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder" Background="{StaticResource ColorPrimary}" />
+                                    <ScrollViewer SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="{StaticResource ColorMain}"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ColorPrimary}"/>
+            <Setter Property="BorderThickness" Value="0.4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
 
     </Application.Resources>
 </Application>
