@@ -59,9 +59,35 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Width" Value="150"/>
+            <Setter Property="Width" Value="160"/>
             <Setter Property="TextAlignment" Value="Left"/>
 			<Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
+        </Style>
+        <Style TargetType="Button" x:Key="BlockTable">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ColorSecondary}"/>
+                    <Setter Property="Foreground" Value="{StaticResource ColorAccent}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" x:Key="BlockCommonMain">
             <Setter Property="Margin" Value="5"/>
@@ -122,32 +148,23 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="{StaticResource ColorMain}"/>
+            <Setter Property="Foreground" Value="{StaticResource ColorPrimary}"/>
         </Style>
         <Style TargetType="Image" x:Key="ProductImage">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Height" Value="125"/>
         </Style>
-        <Style TargetType="TextBlock" x:Key="BlockDescription" >
-            <Setter Property="Margin" Value="10, 3, 0, 0"/>
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Width" Value="500"/>
-            <Setter Property="TextAlignment" Value="Justify"/>
+        <Style TargetType="ListView">
+            <Setter Property="Foreground" Value="{StaticResource ColorPrimary}" />
+            <Setter Property="Background" Value="{StaticResource ColorMain}" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
         </Style>
-        <Style TargetType="DatePicker">
-            <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="Width" Value="175"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed"/>
         </Style>
-        
+
+
         <!-- ContextMenu separator style -->
         <Style x:Key="MenuSeparatorStyle" TargetType="{x:Type Separator}">
             <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -210,5 +227,30 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+
+        <Style TargetType="TextBlock" x:Key="BlockDescription" >
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="TextAlignment" Value="Justify"/>
+        </Style>
+        <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ColorMain}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource ColorMain}"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ColorMain}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource ColorMain}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Application.Resources>
 </Application>

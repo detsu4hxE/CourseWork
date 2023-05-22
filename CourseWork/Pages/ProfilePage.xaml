@@ -33,8 +33,12 @@
                     <TextBlock Style="{StaticResource BlockCommon}" Name="emailBox"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource BlockCommon}" Text="Количество ответов: "/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="answersAmountBoxTitle" Text="Количество ответов: "/>
                     <TextBlock Style="{StaticResource BlockCommon}" Name="answersAmountBox"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="roleBoxTitle" Text="Роль: "/>
+                    <TextBlock Style="{StaticResource BlockCommon}" Name="roleBox"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource BlockCommon}" Text="Дата создания: "/>

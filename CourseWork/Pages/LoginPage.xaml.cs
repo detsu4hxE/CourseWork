@@ -40,8 +40,16 @@ namespace CourseWork.Pages
                     };
                     App.Context.History.Add(History);
                     App.Context.SaveChanges();
-                    MainWindow mainWindow = new MainWindow(currentUser.user_id);
-                    mainWindow.Show();
+                    if (currentUser.role_id == 1)
+                    {
+                        AdminWindow adminWindow = new AdminWindow(currentUser.user_id);
+                        adminWindow.Show();
+                    }
+                    else
+                    {
+                        MainWindow mainWindow = new MainWindow(currentUser.user_id);
+                        mainWindow.Show();
+                    }
                     Window.GetWindow(this).Close();
                 }
                 else

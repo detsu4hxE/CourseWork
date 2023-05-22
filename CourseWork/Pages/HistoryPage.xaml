@@ -8,9 +8,9 @@
       d:DesignHeight="550" d:DesignWidth="800"
       Title="История входа">
 
-    <ListView Name="listViewHistory" Foreground="{StaticResource ColorPrimary}" Background="{StaticResource ColorMain}" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+    <ListView Name="listViewHistory">
         <ListView.View>
-            <GridView>
+            <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
                 <GridViewColumn>
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
@@ -25,36 +25,14 @@
             <GroupStyle>
                 <GroupStyle.HeaderTemplate>
                     <DataTemplate>
-                        <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Day}"/>
+                        <StackPanel>
+                            <TextBlock Visibility="Hidden"/>
+                            <TextBlock Style="{StaticResource BlockHistory}" Text="{Binding Name}"/>
+                            <Separator Width="150" BorderBrush="{StaticResource ColorAccent}"/>
+                        </StackPanel>
                     </DataTemplate>
                 </GroupStyle.HeaderTemplate>
             </GroupStyle>
         </ListView.GroupStyle>
-        <ListView.ItemContainerStyle>
-            <Style TargetType="{x:Type ListViewItem}">
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource ColorMain}"/>
-                        <Setter Property="BorderBrush" Value="{StaticResource ColorMain}"/>
-                    </Trigger>
-                    <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Background" Value="{StaticResource ColorMain}"/>
-                        <Setter Property="BorderBrush" Value="{StaticResource ColorMain}"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-        </ListView.ItemContainerStyle>
     </ListView>
-    <!--<Grid>
-        <ListView Name="listViewHistory" Background="{StaticResource ColorMain}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource BlockHistory}" Text="{Binding day}" Margin="5"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>-->
 </Page>

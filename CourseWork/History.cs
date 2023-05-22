@@ -28,7 +28,7 @@ namespace CourseWork
         {
             get
             {
-                return date.ToString("f");
+                return date.ToString("t");
             }
         }
 

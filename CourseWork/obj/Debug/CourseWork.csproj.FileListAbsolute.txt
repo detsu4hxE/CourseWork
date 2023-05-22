@@ -22,8 +22,6 @@ C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\App.baml
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CopyComplete
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Pages\LoginPage.g.cs
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Pages\LoginPage.baml
-C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\Registration.g.cs
-C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\Registration.baml
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Windows\AuthorizationWindow.g.cs
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Windows\AuthorizationWindow.baml
 C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\Windows\MainWindow.g.cs
@@ -64,3 +62,15 @@ C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\ProfileEditPage.
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RegistrationPage.baml
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\HistoryPage.g.cs
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\HistoryPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\HistoryPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\ProfilePage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\ProfileEditPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RegistrationPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\HistoryPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\ProfilePage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\ProfileEditPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RegistrationPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Windows\AdminWindow.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Windows\AdminWindow.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RolesPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\RolesPage.baml

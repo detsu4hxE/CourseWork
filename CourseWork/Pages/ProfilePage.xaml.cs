@@ -33,6 +33,8 @@ namespace CourseWork.Pages
             answers = answers.Where(a => a.user_id == currentUserId).ToList();
             var history = App.Context.History.ToList();
             var currentHistory = history.Where(h => h.user_id == currentUserId).FirstOrDefault();
+            var roles = App.Context.Roles.ToList();
+            var currentRole = roles.Where(r => r.role_id == currentUser.role_id).FirstOrDefault();
             loginBox.Text = currentUser.login;
             surnameBox.Text = currentUser.surname;
             firstnameBox.Text = currentUser.firstname;
@@ -43,7 +45,18 @@ namespace CourseWork.Pages
                 patronymicBoxTitle.Visibility = Visibility.Visible;
             }
             emailBox.Text = currentUser.email;
-            answersAmountBox.Text = answers.Count().ToString();
+            if (currentUser.role_id == 1)
+            {
+                answersAmountBox.Visibility = Visibility.Collapsed;
+                answersAmountBoxTitle.Visibility = Visibility.Collapsed;
+                roleBox.Text = currentRole.name;
+            }
+            else
+            {
+                roleBox.Visibility = Visibility.Collapsed;
+                roleBoxTitle.Visibility = Visibility.Collapsed;
+                answersAmountBox.Text = answers.Count().ToString();
+            }
             creationDateBox.Text = currentHistory.date.ToString("D");
             img = currentUser.image;
             if (currentUser.image == null)

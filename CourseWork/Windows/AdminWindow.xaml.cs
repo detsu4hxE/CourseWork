@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,19 +11,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.IO;
 
 namespace CourseWork.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AdminWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AdminWindow : Window
     {
         public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Images\");
         public int currentUserId;
         public string previousPage = "Example";
-        public MainWindow(int user_id)
+        public AdminWindow(int user_id)
         {
             InitializeComponent();
             currentUserId = user_id;
@@ -80,6 +80,26 @@ namespace CourseWork.Windows
         private void historyBtn_Click(object sender, EventArgs e)
         {
             FrameMain.Navigate(new Pages.HistoryPage(currentUserId));
+        }
+        private void btnRoles_Click(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.RolesPage());
+        }
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.RolesPage());
+        }
+        private void btnAnswers_Click(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.RolesPage());
+        }
+        private void btnSubjects_Click(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.RolesPage());
+        }
+        private void btnTasks_Click(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.RolesPage());
         }
     }
 }

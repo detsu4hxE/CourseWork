@@ -26,7 +26,7 @@ namespace CourseWork.Pages
         // Переменные для загрузки изображения
         private byte[] _mainImageData = null;
         public string img = null;
-        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName)).FullName, @"Images\");
+        public string path = Path.Combine(Directory.GetParent(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName)).FullName, @"Images\");
         public string selectefFileName;
         public string extension = ".jpg";
         string patronymic = null;
