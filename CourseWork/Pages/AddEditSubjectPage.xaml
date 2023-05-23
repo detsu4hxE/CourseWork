@@ -1,0 +1,21 @@
+﻿<Page x:Class="CourseWork.Pages.AddEditSubjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseWork.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="1000"
+      Title="Добавление темы">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource BlockCommon}" Text="Название"></TextBlock>
+                <TextBox Name="TBoxName" TextChanged="TBoxName_TextChanged"></TextBox>
+            </StackPanel>
+            <TextBlock Name="nameError" Style="{StaticResource ErrorMessage}" Text="Тема с данным названием уже существует" Visibility="Collapsed"></TextBlock>
+            <Button Height="30" Width="200" Margin="5" Name="BtnSave" Click="BtnSave_Click" Content="Coxpанить"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
