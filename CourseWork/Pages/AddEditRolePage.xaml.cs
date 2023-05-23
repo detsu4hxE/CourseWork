@@ -33,7 +33,7 @@ namespace CourseWork.Pages
         {
             InitializeComponent();
             currentRole = role;
-            Title = "Редактировать роль";
+            Title = "Редактирование роли";
             TBoxName.Text = currentRole.name;
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)

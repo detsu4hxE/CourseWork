@@ -1,0 +1,25 @@
+﻿<Page x:Class="CourseWork.Pages.AddEditTaskPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseWork.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="1000"
+      Title="Добавление задания">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource BlockCommon}" Text="Тема" TextAlignment="Center"></TextBlock>
+                <ComboBox Name="subjectBox"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource BlockCommon}" Text="Описание" TextAlignment="Center"></TextBlock>
+                <TextBox Name="TBoxDescription" TextChanged="TBoxName_TextChanged" Style="{StaticResource WideBox}"></TextBox>
+            </StackPanel>
+            <TextBlock Name="descriptionError" Style="{StaticResource ErrorMessage}" Text="Задание с данным условием уже существует" Visibility="Collapsed"></TextBlock>
+            <Button Name="BtnSave" Click="BtnSave_Click" Content="Coxpанить"></Button>
+        </StackPanel>
+    </Grid>
+</Page>

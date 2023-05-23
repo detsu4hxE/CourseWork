@@ -15,7 +15,7 @@
                 <TextBox Name="TBoxName" TextChanged="TBoxName_TextChanged"></TextBox>
             </StackPanel>
             <TextBlock Name="nameError" Style="{StaticResource ErrorMessage}" Text="Тема с данным названием уже существует" Visibility="Collapsed"></TextBlock>
-            <Button Height="30" Width="200" Margin="5" Name="BtnSave" Click="BtnSave_Click" Content="Coxpанить"></Button>
+            <Button Name="BtnSave" Click="BtnSave_Click" Content="Coxpанить"></Button>
         </StackPanel>
     </Grid>
 </Page>

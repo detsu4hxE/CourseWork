@@ -95,6 +95,9 @@
     <Compile Include="Pages\AddEditSubjectPage.xaml.cs">
       <DependentUpon>AddEditSubjectPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddEditTaskPage.xaml.cs">
+      <DependentUpon>AddEditTaskPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,9 @@
     </Compile>
     <Compile Include="Pages\SubjectsPage.xaml.cs">
       <DependentUpon>SubjectsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TasksPage.xaml.cs">
+      <DependentUpon>TasksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Roles.cs">
       <DependentUpon>base.tt</DependentUpon>
@@ -151,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AddEditTaskPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\HistoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SubjectsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TasksPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

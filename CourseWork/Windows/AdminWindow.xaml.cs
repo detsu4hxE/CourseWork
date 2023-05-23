@@ -99,7 +99,7 @@ namespace CourseWork.Windows
         }
         private void btnTasks_Click(object sender, EventArgs e)
         {
-            FrameMain.Navigate(new Pages.RolesPage());
+            FrameMain.Navigate(new Pages.TasksPage());
         }
     }
 }

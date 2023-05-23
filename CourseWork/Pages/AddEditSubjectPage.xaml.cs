@@ -32,7 +32,7 @@ namespace CourseWork.Pages
         {
             InitializeComponent();
             currentSubject = subject;
-            Title = "Редактировать тему";
+            Title = "Редактирование темы";
             TBoxName.Text = currentSubject.name;
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)

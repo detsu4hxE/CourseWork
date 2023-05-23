@@ -11,7 +11,8 @@ namespace CourseWork
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Tasks
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,15 @@ namespace CourseWork
         public int task_id { get; set; }
         public string description { get; set; }
         public int subject_id { get; set; }
+        public string subjectName
+        {
+            get
+            {
+                var subjects = App.Context.Subjects.ToList();
+                var subject = subjects.Where(s => s.subject_id == subject_id).FirstOrDefault();
+                return subject.name;
+            }
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answers> Answers { get; set; }
