@@ -40,6 +40,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button HorizontalAlignment="Center" Grid.Row="3" Content="Добавить тему" Name="BtnAddSubject" Click="BtnAddSubject_Click"/>
+        <Button HorizontalAlignment="Center" Grid.Row="3" Content="Добавить тему" Name="BtnAdd" Click="BtnAdd_Click"/>
     </Grid>
 </Page>

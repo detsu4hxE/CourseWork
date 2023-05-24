@@ -16,6 +16,9 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox Name="SubjectFilter" SelectionChanged="SubjectFilter_SelectionChanged">
+                <ComboBoxItem Content="Все темы"/>
+            </ComboBox>
             <ComboBox Name="ComboSortBy" SelectionChanged="ComboSortBy_SelectionChanged">
                 <ComboBoxItem Content="В алфавитном порядке"></ComboBoxItem>
                 <ComboBoxItem Content="В обратном алфавитном порядке"></ComboBoxItem>
@@ -41,6 +44,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button HorizontalAlignment="Center" Grid.Row="3" Content="Добавить роль" Name="BtnAddRole" Click="BtnAddRole_Click"/>
+        <Button HorizontalAlignment="Center" Grid.Row="3" Content="Добавить задание" Name="BtnAdd" Click="BtnAdd_Click"/>
     </Grid>
 </Page>

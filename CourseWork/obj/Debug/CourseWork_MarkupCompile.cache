@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\
 CourseWork
 none
 false
 DEBUG;TRACE
-C:\Users\USR\Source\Repos\CourseWork\CourseWork\App.xaml
-14-806134949
+C:\Users\USR\source\repos\CourseWork\CourseWork\App.xaml
+16787749359
 2176114631
-30-2119972434
-191480791354
-Pages\AddEditRolePage.xaml;Pages\AddEditSubjectPage.xaml;Pages\AddEditTaskPage.xaml;Pages\HistoryPage.xaml;Pages\LoginPage.xaml;Pages\ProfilePage.xaml;Pages\ProfileEditPage.xaml;Pages\RolesPage.xaml;Pages\SubjectsPage.xaml;Pages\TasksPage.xaml;Windows\AdminWindow.xaml;Windows\AuthorizationWindow.xaml;Pages\RegistrationPage.xaml;Windows\MainWindow.xaml;
+32-1469182586
+191449121338
+Pages\AddEditRolePage.xaml;Pages\AddEditSubjectPage.xaml;Pages\AddEditTaskPage.xaml;Pages\AddEditUserPage.xaml;Pages\HistoryPage.xaml;Pages\LoginPage.xaml;Pages\ProfilePage.xaml;Pages\ProfileEditPage.xaml;Pages\RolesPage.xaml;Pages\SubjectsPage.xaml;Pages\TasksPage.xaml;Pages\UsersPage.xaml;Windows\AdminWindow.xaml;Windows\AuthorizationWindow.xaml;Pages\RegistrationPage.xaml;Windows\MainWindow.xaml;
 
 False
 

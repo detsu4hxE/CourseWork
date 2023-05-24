@@ -16,19 +16,21 @@ using System.Windows.Shapes;
 namespace CourseWork.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для TasksPage.xaml
+    /// Логика взаимодействия для UsersPage.xaml
     /// </summary>
-    public partial class TasksPage : Page
+    public partial class UsersPage : Page
     {
-        public TasksPage()
+        public int currentUserId;
+        public UsersPage(int id)
         {
             InitializeComponent();
-            var subjects = App.Context.Subjects.Select(s => s.name).ToList();
-            foreach (var subject in subjects)
+            currentUserId = id;
+            var roles = App.Context.Roles.Select(r => r.name).ToList();
+            foreach (var role in roles)
             {
-                SubjectFilter.Items.Add(subject);
+                RoleFilter.Items.Add(role);
             }
-            SubjectFilter.SelectedIndex = 0;
+            RoleFilter.SelectedIndex = 0;
             ComboSortBy.SelectedIndex = 0;
             Update();
         }
@@ -52,31 +54,31 @@ namespace CourseWork.Pages
             Update();
         }
 
-        private void SubjectFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RoleFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Update();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddEditTaskPage());
+            NavigationService.Navigate(new AddEditUserPage(currentUserId));
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            var currentTask = button.DataContext as Tasks;
-            NavigationService.Navigate(new AddEditTaskPage(currentTask));
+            var currentUser = button.DataContext as Users;
+            NavigationService.Navigate(new AddEditUserPage(currentUser));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            var currentTask = (sender as Button).DataContext as Tasks;
-            var answers = App.Context.Answers.Where(a => a.task_id == currentTask.task_id);
-            if (MessageBox.Show($"Вы уверены, что хотите удалить задание: {currentTask.description}?\nКоличество удаляемых ответов: {answers.Count()}.",
+            var currentUser = (sender as Button).DataContext as Users;
+            var answers = App.Context.Answers.Where(a => a.user_id == currentUser.user_id);
+            if (MessageBox.Show($"Вы уверены, что хотите удалить пользователя: {currentUser.login}?\nКоличество удаляемых ответов: {answers.Count()}.",
                 "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                App.Context.Tasks.Remove(currentTask);
+                App.Context.Users.Remove(currentUser);
                 App.Context.SaveChanges();
                 Update();
             }
@@ -84,24 +86,24 @@ namespace CourseWork.Pages
 
         private void Update()
         {
-            var tasks = App.Context.Tasks.ToList();
-            if (SubjectFilter.SelectedIndex != 0)
+            var users = App.Context.Users.Where(u => u.user_id != currentUserId).ToList();
+            if (RoleFilter.SelectedIndex != 0)
             {
-                tasks = tasks.Where(t => t.subjectName == SubjectFilter.SelectedItem.ToString()).ToList();
+                users = users.Where(u => u.roleName == RoleFilter.SelectedItem.ToString()).ToList();
             }
             if (ComboSortBy.SelectedIndex == 0)
             {
-                tasks = tasks.OrderBy(t => t.description).ToList();
+                users = users.OrderBy(u => u.login).ToList();
             }
             else
             {
-                tasks = tasks.OrderByDescending(t => t.description).ToList();
+                users = users.OrderByDescending(u => u.login).ToList();
             }
-            tasks = tasks.Where(r => r.description.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
-            LViewTasks.ItemsSource = null;
-            LViewTasks.ItemsSource = tasks;
-            int countFind = LViewTasks.Items.Count;
-            TBlockItemCounter.Text = countFind.ToString() + " из " + App.Context.Tasks.Count().ToString();
+            users = users.Where(u => u.login.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            LViewUsers.ItemsSource = null;
+            LViewUsers.ItemsSource = users;
+            int countFind = LViewUsers.Items.Count;
+            TBlockItemCounter.Text = countFind.ToString() + " из " + (App.Context.Users.Count() - 1).ToString();
             if (countFind < 1)
                 TBlockItemCounter.Text += "\nПо вашему запросу ничего не найдено. Измените фильтры.";
         }

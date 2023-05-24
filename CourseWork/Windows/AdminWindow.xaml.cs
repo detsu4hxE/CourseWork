@@ -87,7 +87,7 @@ namespace CourseWork.Windows
         }
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            FrameMain.Navigate(new Pages.RolesPage());
+            FrameMain.Navigate(new Pages.UsersPage(currentUserId));
         }
         private void btnAnswers_Click(object sender, EventArgs e)
         {

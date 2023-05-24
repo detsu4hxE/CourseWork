@@ -24,29 +24,29 @@ namespace CourseWork.Pages
         {
             InitializeComponent();
             ComboSortBy.SelectedIndex = 0;
-            UpdateProduct();
+            Update();
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            UpdateProduct();
+            Update();
         }
 
         private void ComboSortBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateProduct();
+            Update();
         }
 
         private void ComboDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateProduct();
+            Update();
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            UpdateProduct();
+            Update();
         }
 
-        private void BtnAddRole_Click(object sender, RoutedEventArgs e)
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddEditRolePage());
         }
@@ -67,11 +67,11 @@ namespace CourseWork.Pages
             {
                 App.Context.Roles.Remove(currentRole);
                 App.Context.SaveChanges();
-                UpdateProduct();
+                Update();
             }
         }
 
-        private void UpdateProduct()
+        private void Update()
         {
             var roles = App.Context.Roles.ToList();
             if (ComboSortBy.SelectedIndex == 0)

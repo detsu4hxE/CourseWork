@@ -1,8 +1,9 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,16 +13,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.IO;
-using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace CourseWork.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ProfileEditPage.xaml
+    /// Логика взаимодействия для AddEditUserPage.xaml
     /// </summary>
-    public partial class ProfileEditPage : Page
+    public partial class AddEditUserPage : Page
     {
+        private Users currentUser = null;
         public int currentUserId;
         private byte[] _mainImageData = null;
         public string img = null;
@@ -34,16 +35,24 @@ namespace CourseWork.Pages
         Regex nameCheck = new Regex(@"^[A-ЯЁ][а-яё]+$");
         Regex emailCheck = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
         MatchCollection matches;
-        public ProfileEditPage(int user_id)
+        public AddEditUserPage(int id)
         {
-            currentUserId = user_id;
             InitializeComponent();
-            UploadInformation(user_id);
+            currentUserId = id;
+            var roles = App.Context.Roles.Select(r => r.name).ToList();
+            roleBox.ItemsSource = roles;
+            roleBox.SelectedIndex = 0;
         }
-        private void UploadInformation(int user_id)
+        public AddEditUserPage(Users user)
         {
-            var users = App.Context.Users.ToList();
-            var currentUser = users.Where(u => u.user_id == user_id).FirstOrDefault();
+            InitializeComponent();
+            currentUserId = user.user_id;
+            currentUser = user;
+            Title = "Редактирование пользователя";
+            var roles = App.Context.Roles.Select(r => r.name).ToList();
+            roleBox.ItemsSource = roles;
+            var selectedItem = App.Context.Roles.Where(r => r.role_id == user.role_id).Select(r => r.name).FirstOrDefault();
+            roleBox.Text = selectedItem;
             TBoxLogin.Text = currentUser.login;
             TBoxPassword.Password = currentUser.password;
             TBoxPasswordRepeat.Password = currentUser.password;
@@ -57,7 +66,6 @@ namespace CourseWork.Pages
                 ImageService.Source = new ImageSourceConverter().ConvertFrom(_mainImageData) as ImageSource;
             }
         }
-
         private void BtnSelectImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -76,14 +84,13 @@ namespace CourseWork.Pages
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             var errorMessage = CheckErrors();
+            var role = App.Context.Roles.Where(r => r.name == roleBox.SelectedItem.ToString()).FirstOrDefault();
             if (errorMessage.Length > 0)
             {
                 MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                var users = App.Context.Users.ToList();
-                var currentUser = users.Where(u => u.user_id == currentUserId).FirstOrDefault();
                 // Проверка на наличие картинки пользователя
                 if (img != null)
                 {
@@ -98,22 +105,38 @@ namespace CourseWork.Pages
                     path = path + img;
                     File.Copy(selectefFileName, path);
                 }
+                if (currentUser == null)
+                {
+                    var user = new Users
+                    {
+                        login = TBoxLogin.Text,
+                        password = TBoxPassword.Password,
+                        role_id = role.role_id,
+                        surname = TBoxSurname.Text,
+                        firstname = TBoxFirstname.Text,
+                        patronymic = patronymic,
+                        email = TBoxEmail.Text,
+                        image = img
+                    };
+
+                    App.Context.Users.Add(user);
+                    App.Context.SaveChanges();
+                    MessageBox.Show("Пользователь успешно создан", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
                 else
                 {
-                    img = currentUser.image;
+                    currentUser.login = TBoxLogin.Text;
+                    currentUser.password = TBoxPassword.Password;
+                    currentUser.role_id = role.role_id;
+                    currentUser.surname = TBoxSurname.Text;
+                    currentUser.firstname = TBoxFirstname.Text;
+                    currentUser.patronymic = patronymic;
+                    currentUser.email = TBoxEmail.Text;
+                    currentUser.image = img;
+                    App.Context.SaveChanges();
+                    MessageBox.Show("Пользователь успешно обновлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                currentUser.login = TBoxLogin.Text;
-                currentUser.password = TBoxPassword.Password;
-                currentUser.role_id = 2;
-                currentUser.surname = TBoxSurname.Text;
-                currentUser.firstname = TBoxFirstname.Text;
-                currentUser.patronymic = patronymic;
-                currentUser.email = TBoxEmail.Text;
-                currentUser.image = img;
-
-                App.Context.SaveChanges();
-                MessageBox.Show("Данные были обновлены", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                NavigationService.Navigate(new ProfilePage(currentUserId));
+                NavigationService.Navigate(new UsersPage(currentUserId));
             }
         }
         private string CheckErrors()
@@ -166,7 +189,6 @@ namespace CourseWork.Pages
         private void TBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
             var users = App.Context.Users.ToList();
-            var currentUser = users.Where(u => u.user_id == currentUserId).FirstOrDefault();
             users = users.Where(u => u.login.ToLower().Equals(TBoxLogin.Text.ToLower()) && u.login != currentUser.login).ToList();
             if (users.Count > 0)
             {
@@ -181,7 +203,6 @@ namespace CourseWork.Pages
         private void TBoxEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
             var users = App.Context.Users.ToList();
-            var currentUser = users.Where(u => u.user_id == currentUserId).FirstOrDefault();
             users = users.Where(u => u.email.ToLower().Equals(TBoxEmail.Text.ToLower()) && u.email != currentUser.email).ToList();
             if (users.Count > 0)
             {

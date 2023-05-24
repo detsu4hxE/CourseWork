@@ -43,7 +43,7 @@ namespace CourseWork.Pages
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             var errorMessage = CheckErrors();
-            var subject = App.Context.Subjects.Where(s => s.name == subjectBox.Text).FirstOrDefault();
+            var subject = App.Context.Subjects.Where(s => s.name == subjectBox.SelectedItem.ToString()).FirstOrDefault();
             if (errorMessage.Length > 0)
             {
                 MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -77,9 +77,9 @@ namespace CourseWork.Pages
             var errorBuilder = new StringBuilder();
 
             if (string.IsNullOrWhiteSpace(TBoxDescription.Text))
-                errorBuilder.AppendLine("Название роли обязателно для заполнения;");
+                errorBuilder.AppendLine("Описание обязателно для заполнения;");
             if (descriptionError.Visibility == Visibility.Visible)
-                errorBuilder.AppendLine("Роль с данным названием уже существует;");
+                errorBuilder.AppendLine("Задание с данным условием уже существует;");
             if (errorBuilder.Length > 0)
                 errorBuilder.Insert(0, "Устраните следующие ошибки:\n");
             return errorBuilder.ToString();

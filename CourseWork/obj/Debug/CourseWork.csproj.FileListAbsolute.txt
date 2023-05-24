@@ -94,3 +94,7 @@ C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\TasksPage.g.cs
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\TasksPage.baml
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditTaskPage.g.cs
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditTaskPage.baml
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\UsersPage.g.cs
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\UsersPage.baml
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditUserPage.g.cs
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditUserPage.baml
