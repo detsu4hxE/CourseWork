@@ -11,7 +11,8 @@ namespace CourseWork
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Answers
     {
         public int answer_id { get; set; }
@@ -19,7 +20,32 @@ namespace CourseWork
         public int task_id { get; set; }
         public string code { get; set; }
         public System.DateTime date { get; set; }
-    
+        public string login
+        {
+            get
+            {
+                var users = App.Context.Users.ToList();
+                var user = users.Where(u => u.user_id == user_id).FirstOrDefault();
+                return user.login;
+            }
+        }
+        public string description
+        {
+            get
+            {
+                var tasks = App.Context.Tasks.ToList();
+                var task = tasks.Where(t => t.task_id == task_id).FirstOrDefault();
+                return task.description;
+            }
+        }
+        public string shortDate
+        {
+            get
+            {
+                return date.ToString("f");
+            }
+        }
+
         public virtual Tasks Tasks { get; set; }
         public virtual Users Users { get; set; }
     }

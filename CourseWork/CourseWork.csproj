@@ -89,6 +89,9 @@
     <Compile Include="History.cs">
       <DependentUpon>base.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddEditAnswerPage.xaml.cs">
+      <DependentUpon>AddEditAnswerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddEditRolePage.xaml.cs">
       <DependentUpon>AddEditRolePage.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,9 @@
     </Compile>
     <Compile Include="Pages\AddEditUserPage.xaml.cs">
       <DependentUpon>AddEditUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AnswersPage.xaml.cs">
+      <DependentUpon>AnswersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
@@ -155,6 +161,10 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\AddEditAnswerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AddEditRolePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddEditUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AnswersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

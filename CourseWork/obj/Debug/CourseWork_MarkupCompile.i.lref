@@ -1,19 +1,5 @@
 ﻿
-FC:\Users\USR\source\repos\CourseWork\CourseWork\App.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\AddEditRolePage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\AddEditSubjectPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\AddEditTaskPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\AddEditUserPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\HistoryPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\LoginPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\ProfilePage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\ProfileEditPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\RolesPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\SubjectsPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\TasksPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\UsersPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Windows\AdminWindow.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Windows\AuthorizationWindow.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\RegistrationPage.xaml;;
-FC:\Users\USR\source\repos\CourseWork\CourseWork\Windows\MainWindow.xaml;;
+
+FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\AddEditAnswerPage.xaml;;
+FC:\Users\USR\source\repos\CourseWork\CourseWork\Pages\AnswersPage.xaml;;
 

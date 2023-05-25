@@ -1,0 +1,52 @@
+﻿<Page x:Class="CourseWork.Pages.AnswersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseWork.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="1000"
+      Title="Ответы">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox Name="Filter" SelectionChanged="Filter_SelectionChanged">
+                <ComboBoxItem Content="По дате"/>
+                <ComboBoxItem Content="По логину"/>
+            </ComboBox>
+            <ComboBox Name="ComboSortBy" SelectionChanged="ComboSortBy_SelectionChanged">
+                <ComboBoxItem Content="В убывабщем порядке"></ComboBoxItem>
+                <ComboBoxItem Content="В возрастающем порядке"></ComboBoxItem>
+            </ComboBox>
+            <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource BlockCommon}" TextAlignment="Center" Name="TBlockItemCounter" Width="auto"></TextBlock>
+        </StackPanel>
+        <ListView Grid.Row="2" Name="LViewAnswers">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="{StaticResource ColorAccent}">
+                        <Grid HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding login}" TextAlignment="Center"/>
+                                <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding shortDate}" Width="120" TextAlignment="Center"/>
+                                <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding description}" FontSize="11" Width="200"/>
+                                <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding code}" FontSize="11" Width="200"/>
+                                <Button Width="150" Name="BtnEdit" Click="BtnEdit_Click" Content="Редактировать"/>
+                                <Button Width="150" Name="BtnDelete" Click="BtnDelete_Click" Content="Удалить"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button HorizontalAlignment="Center" Grid.Row="3" Content="Добавить задание" Name="BtnAdd" Click="BtnAdd_Click"/>
+    </Grid>
+</Page>
