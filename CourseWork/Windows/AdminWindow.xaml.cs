@@ -27,6 +27,7 @@ namespace CourseWork.Windows
             InitializeComponent();
             currentUserId = user_id;
             Update(user_id);
+            FrameMain.Navigate(new Pages.AdminMainPage(currentUserId));
         }
         private void Update(int user_id)
         {
@@ -76,6 +77,10 @@ namespace CourseWork.Windows
         private void profileBtn_Click(object sender, EventArgs e)
         {
             FrameMain.Navigate(new Pages.ProfilePage(currentUserId));
+        }
+        private void Icon_MouseLeftButtonDown(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.AdminMainPage(currentUserId));
         }
         private void historyBtn_Click(object sender, EventArgs e)
         {

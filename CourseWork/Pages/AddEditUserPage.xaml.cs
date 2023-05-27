@@ -43,10 +43,10 @@ namespace CourseWork.Pages
             roleBox.ItemsSource = roles;
             roleBox.SelectedIndex = 0;
         }
-        public AddEditUserPage(Users user)
+        public AddEditUserPage(Users user, int id)
         {
             InitializeComponent();
-            currentUserId = user.user_id;
+            currentUserId = id;
             currentUser = user;
             Title = "Редактирование пользователя";
             var roles = App.Context.Roles.Select(r => r.name).ToList();

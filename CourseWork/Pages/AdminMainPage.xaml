@@ -1,0 +1,73 @@
+﻿<Page x:Class="CourseWork.Pages.AdminMainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseWork.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="1000"
+      Title="Главная страница">
+
+    <Grid>
+        <TextBlock Style="{StaticResource BlockTitle}" Text="Последние записи в таблицах"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 10 10 0">
+            <Border Style="{StaticResource BorderStyle}">
+                <StackPanel>
+                    <Button Content="Роли" Click="btnRoles_Click" Style="{StaticResource ButtonAdminWindow}"/>
+                    <Separator/>
+                    <Button Name="roleNameBox" Click="roleName_Click" Style="{StaticResource Button2AdminWindow}"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource BorderStyle}">
+                <StackPanel>
+                    <Button Content="Пользователи" Click="btnUsers_Click" Style="{StaticResource ButtonAdminWindow}"/>
+                    <Separator/>
+                    <Border Margin="5" Height="100" Width="100" BorderBrush="{StaticResource ColorAccent}" BorderThickness="1">
+                        <Image Name="profilePictureBox" Source="/Images/default_ava.png"/>
+                    </Border>
+                    <Separator/>
+                    <Button Name="loginBox" Click="login_Click" Style="{StaticResource Button2AdminWindow}"/>
+                    <Separator/>
+                    <TextBlock Name="surnameBox" Style="{StaticResource BlockMainPage}"/>
+                    <Separator/>
+                    <TextBlock Name="firstnameBox" Style="{StaticResource BlockMainPage}"/>
+                    <Separator/>
+                    <TextBlock Name="patronymicBox" Style="{StaticResource BlockMainPage}"/>
+                    <Separator/>
+                    <TextBlock Name="emailBox" Style="{StaticResource BlockMainPage}"/>
+                    <Separator/>
+                    <Button Name="roleUserBox" Click="roleUser_Click" Style="{StaticResource Button2AdminWindow}"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource BorderStyle}">
+                <StackPanel>
+                    <Button Content="Ответы" Click="btnAnswers_Click" Style="{StaticResource ButtonAdminWindow}"/>
+                    <Separator/>
+                    <Button Name="userBox" Click="user_Click" Style="{StaticResource Button2AdminWindow}"/>
+                    <Separator/>
+                    <Button Name="taskBox" Click="task_Click" MaxWidth="150" Style="{StaticResource Button2AdminWindow}"/>
+                    <Separator/>
+                    <TextBlock x:Name="codeBox" MaxWidth="150" TextWrapping="Wrap" Style="{StaticResource BlockMainPage}"/>
+                    <Separator Name="patronymicCaseSeparator"/>
+                    <TextBlock x:Name="dateBox" Style="{StaticResource BlockMainPage}" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource BorderStyle}">
+                <StackPanel>
+                    <Button Content="Темы" Click="btnSubjects_Click" Style="{StaticResource ButtonAdminWindow}"/>
+                    <Separator/>
+                    <Button Name="subjectNameBox" Click="subjectName_Click" MaxWidth="150" Style="{StaticResource Button2AdminWindow}"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource BorderStyle}">
+                <StackPanel>
+                    <Button Content="Задания" Click="btnTasks_Click" Style="{StaticResource ButtonAdminWindow}"/>
+                    <Separator/>
+                    <Button Name="subjectBox" Click="subject_Click" MaxWidth="150" Style="{StaticResource Button2AdminWindow}"/>
+                    <Separator/>
+                    <Button Name="descriptionBox" Click="description_Click" MaxWidth="150" Style="{StaticResource Button2AdminWindow}"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

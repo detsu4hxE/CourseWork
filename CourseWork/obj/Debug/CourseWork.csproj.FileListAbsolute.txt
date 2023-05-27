@@ -102,3 +102,5 @@ C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AnswersPage.g.cs
 C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AnswersPage.baml
 C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditAnswerPage.g.cs
 C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditAnswerPage.baml
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AdminMainPage.g.cs
+C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AdminMainPage.baml

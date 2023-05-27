@@ -68,7 +68,7 @@ namespace CourseWork.Pages
         {
             var button = sender as Button;
             var currentUser = button.DataContext as Users;
-            NavigationService.Navigate(new AddEditUserPage(currentUser));
+            NavigationService.Navigate(new AddEditUserPage(currentUser, currentUserId));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
