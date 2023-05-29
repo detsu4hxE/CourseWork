@@ -67,7 +67,6 @@ namespace CourseWork.Pages
                 if (img != null)
                 {
                     img = TBoxLogin.Text + extension;
-                    var files = Directory.GetFiles(path);
                     int a = 0;
                     while (File.Exists(path + img))
                     {

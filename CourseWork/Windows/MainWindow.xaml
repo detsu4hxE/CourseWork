@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork.Windows"
         mc:Ignorable="d"
-        Title="Основное окно" Height="550" Width="800">
+        Title="Основное окно" Height="550" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="85"/>
@@ -24,7 +24,7 @@
             <Ellipse.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Профиль" Click="profileBtn_Click"/>
-                    <MenuItem Header="Выполненные задания"/>
+                    <MenuItem Header="Выполненные задания" Click="answersBtn_Click"/>
                     <MenuItem Header="История входа" Click="historyBtn_Click"/>
                     <MenuItem Header="Выход" Foreground="#FFC83232" Click="exitBtn_Click"/>
                 </ContextMenu>

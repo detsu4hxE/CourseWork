@@ -20,8 +20,8 @@
                 <ComboBoxItem Content="Все темы"/>
             </ComboBox>
             <ComboBox Name="ComboSortBy" SelectionChanged="ComboSortBy_SelectionChanged">
-                <ComboBoxItem Content="В алфавитном порядке"></ComboBoxItem>
-                <ComboBoxItem Content="В обратном алфавитном порядке"></ComboBoxItem>
+                <ComboBoxItem Content="По возрастанию"></ComboBoxItem>
+                <ComboBoxItem Content="По убыванию"></ComboBoxItem>
             </ComboBox>
             <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
         </StackPanel>
@@ -34,6 +34,7 @@
                     <Border BorderBrush="{StaticResource ColorAccent}">
                         <Grid HorizontalAlignment="Center">
                             <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource BlockDescription}" Width="25" Text="{Binding task_id}" TextAlignment="Center"/>
                                 <TextBlock Style="{StaticResource BlockDescription}" Text="{Binding subjectName}" TextAlignment="Center"/>
                                 <TextBlock Style="{StaticResource BlockDescription}" Text="{Binding description}" FontSize="12" Width="300"/>
                                 <Button Name="BtnEdit" Click="BtnEdit_Click" Content="Редактировать"/>

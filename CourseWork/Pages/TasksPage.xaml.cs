@@ -42,11 +42,6 @@ namespace CourseWork.Pages
             Update();
         }
 
-        private void ComboDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Update();
-        }
-
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             Update();
@@ -91,11 +86,11 @@ namespace CourseWork.Pages
             }
             if (ComboSortBy.SelectedIndex == 0)
             {
-                tasks = tasks.OrderBy(t => t.description).ToList();
+                tasks = tasks.OrderBy(t => t.task_id).ToList();
             }
             else
             {
-                tasks = tasks.OrderByDescending(t => t.description).ToList();
+                tasks = tasks.OrderByDescending(t => t.task_id).ToList();
             }
             tasks = tasks.Where(r => r.description.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             LViewTasks.ItemsSource = null;

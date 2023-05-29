@@ -104,3 +104,17 @@ C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditAnswerPag
 C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditAnswerPage.baml
 C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AdminMainPage.g.cs
 C:\Users\USR\source\repos\CourseWork\CourseWork\obj\Debug\Pages\AdminMainPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditAnswerPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditTaskPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditUserPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AdminMainPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AnswersPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\TasksPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\UsersPage.g.cs
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditAnswerPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditTaskPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditUserPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AdminMainPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AnswersPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\TasksPage.baml
+C:\Users\10200374\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\UsersPage.baml

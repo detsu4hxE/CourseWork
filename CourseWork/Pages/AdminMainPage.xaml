@@ -33,7 +33,7 @@
                     <TextBlock Name="firstnameBox" Style="{StaticResource BlockMainPage}"/>
                     <Separator/>
                     <TextBlock Name="patronymicBox" Style="{StaticResource BlockMainPage}"/>
-                    <Separator/>
+                    <Separator Name="patronymicCaseSeparator"/>
                     <TextBlock Name="emailBox" Style="{StaticResource BlockMainPage}"/>
                     <Separator/>
                     <Button Name="roleUserBox" Click="roleUser_Click" Style="{StaticResource Button2AdminWindow}"/>
@@ -45,10 +45,10 @@
                     <Separator/>
                     <Button Name="userBox" Click="user_Click" Style="{StaticResource Button2AdminWindow}"/>
                     <Separator/>
-                    <Button Name="taskBox" Click="task_Click" MaxWidth="150" Style="{StaticResource Button2AdminWindow}"/>
+                    <Button Name="taskBox" Click="task_Click" MaxWidth="180" Style="{StaticResource Button2AdminWindow}"/>
                     <Separator/>
                     <TextBlock x:Name="codeBox" MaxWidth="150" TextWrapping="Wrap" Style="{StaticResource BlockMainPage}"/>
-                    <Separator Name="patronymicCaseSeparator"/>
+                    <Separator/>
                     <TextBlock x:Name="dateBox" Style="{StaticResource BlockMainPage}" />
                 </StackPanel>
             </Border>

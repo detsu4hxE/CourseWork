@@ -55,6 +55,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button HorizontalAlignment="Center" Grid.Row="3" Content="Добавить пользователя" Name="BtnAdd" Click="BtnAdd_Click"/>
+        <Button HorizontalAlignment="Center" Grid.Row="3" Width="225" Content="Добавить пользователя" Name="BtnAdd" Click="BtnAdd_Click"/>
     </Grid>
 </Page>

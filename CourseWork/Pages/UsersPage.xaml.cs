@@ -44,11 +44,6 @@ namespace CourseWork.Pages
             Update();
         }
 
-        private void ComboDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Update();
-        }
-
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             Update();
