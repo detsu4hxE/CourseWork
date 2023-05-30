@@ -78,10 +78,20 @@ namespace CourseWork.Pages
             dateBox.Text = answer.date.ToString("f");
             // Тема
             var subject = App.Context.Subjects.ToList().LastOrDefault();
-            subjectNameBox.Content = subject.name;
+            var sn = subject.name.Substring(0, Math.Min(subject.name.Length, 20));
+            if (sn != subject.name)
+            {
+                sn += "...";
+            }
+            subjectNameBox.Content = sn;
             // Задание
             var task = App.Context.Tasks.ToList().LastOrDefault();
-            subjectBox.Content = task.subjectName;
+            var tsn = task.subjectName.Substring(0, Math.Min(task.subjectName.Length, 20));
+            if (tsn != task.subjectName)
+            {
+                tsn += "...";
+            }
+            subjectBox.Content = tsn;
             var td = task.description.Substring(0, Math.Min(task.description.Length, 20));
             if (td != task.description)
             {
