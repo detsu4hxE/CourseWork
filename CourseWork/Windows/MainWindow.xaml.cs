@@ -27,7 +27,7 @@ namespace CourseWork.Windows
             InitializeComponent();
             currentUserId = user_id;
             Update(user_id);
-            FrameMain.Navigate(new Pages.AnswersPage(currentUserId));
+            FrameMain.Navigate(new Pages.MainPage());
         }
         private void Update(int user_id)
         {
