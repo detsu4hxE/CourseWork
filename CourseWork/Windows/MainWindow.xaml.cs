@@ -27,7 +27,7 @@ namespace CourseWork.Windows
             InitializeComponent();
             currentUserId = user_id;
             Update(user_id);
-            FrameMain.Navigate(new Pages.MainPage());
+            FrameMain.Navigate(new Pages.MainPage(currentUserId));
         }
         private void Update(int user_id)
         {
@@ -42,7 +42,10 @@ namespace CourseWork.Windows
             (profilePicture.Fill as ImageBrush).ImageSource = profilePic;
             TBlockUsername.Text = currentUser.login;
         }
-
+        private void Icon_MouseLeftButtonDown(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.MainPage(currentUserId));
+        }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             if (FrameMain.CanGoBack && MessageBox.Show($"Вы уверены, что хотите вернуться?\nНесохраненные данные могут быть утеряны",

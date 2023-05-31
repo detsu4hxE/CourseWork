@@ -5,13 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CourseWork.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="1000"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="Проверка кода">
 
     <Grid>
-        <StackPanel>
-            <TextBox Name="testBox" Width="700" Height="200"/>
-            <Button Click="Button_Click"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Name="testBox" AcceptsReturn="True" Width="700" Height="350" PreviewKeyDown="testBox_PreviewKeyDown"/>
+            <Button Width="30" Content="Go" Click="Button_Click"/>
+            <Border BorderBrush="{StaticResource ColorPrimary}" BorderThickness="1" Height="350">
+                <TextBlock Name="resultBox" Style="{StaticResource BlockCommon}" Width="200" Height="350"/>
+            </Border>
         </StackPanel>
     </Grid>
 </Page>

@@ -39,6 +39,7 @@ namespace CourseWork.Pages
         {
             InitializeComponent();
             currentUserId = id;
+            currentUser = null;
             var roles = App.Context.Roles.Select(r => r.name).ToList();
             roleBox.ItemsSource = roles;
             roleBox.SelectedIndex = 0;
@@ -189,14 +190,29 @@ namespace CourseWork.Pages
         private void TBoxLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
             var users = App.Context.Users.ToList();
-            users = users.Where(u => u.login.ToLower().Equals(TBoxLogin.Text.ToLower()) && u.login != currentUser.login).ToList();
-            if (users.Count > 0)
+            if (currentUser != null)
             {
-                LoginError.Visibility = Visibility.Visible;
+                users = users.Where(u => u.login.ToLower().Equals(TBoxLogin.Text.ToLower()) && u.login != currentUser.login).ToList();
+                if (users.Count > 0)
+                {
+                    LoginError.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    LoginError.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
-                LoginError.Visibility = Visibility.Collapsed;
+                users = users.Where(u => u.login.ToLower().Equals(TBoxLogin.Text.ToLower())).ToList();
+                if (users.Count > 0)
+                {
+                    LoginError.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    LoginError.Visibility = Visibility.Collapsed;
+                }
             }
         }
 

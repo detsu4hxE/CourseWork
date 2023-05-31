@@ -19,7 +19,6 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="{StaticResource ColorSecondary}"></Grid>
         <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="{StaticResource ColorSecondary}"></Grid>
-        <Image Source="/Images/logo.png" Grid.Column="2" Width="70" HorizontalAlignment="Right" Margin="0 0 15 0"></Image>
         <Ellipse Name="profilePicture" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Width="70" Height="70" StrokeThickness="1" Stroke="{StaticResource ColorAccent}" HorizontalAlignment="Left" Margin="15 0 0 0">
             <Ellipse.ContextMenu>
                 <ContextMenu>
@@ -31,6 +30,11 @@
             </Ellipse.ContextMenu>
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/Images/default_ava.png" Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse Name="iconPicture" MouseLeftButtonDown="Icon_MouseLeftButtonDown" Height="70" StrokeThickness="1" Grid.Column="2" Width="70" HorizontalAlignment="Right" Margin="0 0 15 0">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="/Images/logo.png"></ImageBrush>
             </Ellipse.Fill>
         </Ellipse>
         <TextBlock Style="{StaticResource BlockCommon}" Grid.Column="1" Margin="10" Name="TBlockUsername" HorizontalAlignment="Left" Width="200"></TextBlock>
