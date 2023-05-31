@@ -87,6 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>base.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Counter.cs" />
     <Compile Include="History.cs">
       <DependentUpon>base.tt</DependentUpon>
     </Compile>

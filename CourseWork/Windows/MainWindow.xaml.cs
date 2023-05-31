@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.Net.NetworkInformation;
 
 namespace CourseWork.Windows
 {

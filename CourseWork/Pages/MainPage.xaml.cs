@@ -26,49 +26,73 @@ namespace CourseWork.Pages
     public partial class MainPage : Page
     {
         public int currentUserId;
+        public MainPage(int id)
+        {
+            InitializeComponent();
+            currentUserId = id;
+            string code = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tint b = int.Parse(Console.ReadLine());\n\t\tint c = a + b;\n\t\tConsole.WriteLine(\"a + b = \" + c);\n\t}\n}";
+            testBox.Text = code;
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string code = testBox.Text;
+            Counter.a++;
+            ReplaceCR(ref code);
+            // Настройки компиляции
+            var provider = new CSharpCodeProvider();
+            var parameters = new CompilerParameters();
+            parameters.GenerateExecutable = true;
+            parameters.OutputAssembly = "CourseWork" + Counter.a.ToString() + ".exe";
 
-        //Работает
+            // Компиляция кода
+            CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
 
-        //public MainPage(int id)
-        //{
-        //    InitializeComponent();
-        //    currentUserId = id;
-        //    testBox.Text = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tConsole.WriteLine (\"Hello Mono World\");\n\t}\n}";
-        //    string code = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = 3;\n\t\tint b = int.Parse(Console.ReadLine());\n\t\tint c = a + b;\n\t\tConsole.WriteLine(\"a + b = \" + c);\n\t}\n}";
-        //    testBox.Text = code;
-        //}
-        //https://learn.microsoft.com/ru-ru/troubleshoot/developer/visualstudio/csharp/language-compilers/compile-code-using-compiler
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    // Создание провайдера компиляции для языка C#
-        //    CodeDomProvider provider = new CSharpCodeProvider();
+            // Проверка на ошибки компиляции
+            if (results.Errors.HasErrors)
+            {
+                Counter.a--;
+                resultBox.Text = "Ошибка компиляции:";
+                foreach (CompilerError error in results.Errors)
+                {
+                    resultBox.Text += error.ErrorText;
+                }
+            }
+            else
+            {
+                resultBox.Text = "Код успешно скомпилирован";
 
-        //    // Настройка параметров компиляции
-        //    CompilerParameters parameters = new CompilerParameters();
-        //    parameters.GenerateExecutable = true;
-        //    parameters.OutputAssembly = "MyProgram.exe";
+                // Запуск скомпилированной программы и получение выходных данных
+                var assembly = results.CompiledAssembly;
+                Type programType = assembly.GetType("CourseWork" + Counter.a.ToString());
+                var method = programType.GetMethod("Main");
+                var arguments = new string[] { "5", "7" }; // Входные данные
+                var consoleOutput = new StringWriter();
+                Console.SetOut(consoleOutput);
+                method.Invoke(null, new object[] { arguments });
+                var outputText = consoleOutput.ToString();
+                Console.SetOut(Console.Out);
 
-        //    // Добавление ссылок на необходимые библиотеки
-        //    parameters.ReferencedAssemblies.Add("System.dll");
+                // Вывод результатов в текстовое поле
+                resultBox.Text = outputText;
+            }
+            Console.ReadLine();
+        }
 
-        //    var a = testBox.Text;
-        //    // Компиляция исходного кода
-        //    CompilerResults results = provider.CompileAssemblyFromSource(parameters, a);
+        
+        public void ReplaceCR(ref string text)
+        {
+            string[] args = { "args[0]", "args[1]", "args[2]" }; // массив для замены
+            int count = 0; // счетчик замен
 
-        //    // Проверка результатов компиляции
-        //    if (results.Errors.Count > 0)
-        //    {
-        //        resultBox.Text = "Compilation failed:";
-        //        foreach (CompilerError error in results.Errors)
-        //        {
-        //            resultBox.Text += (error.ErrorText);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        resultBox.Text = "Compilation succeeded!";
-        //    }
-        //}
+            while (text.Contains("Console.ReadLine()"))
+            {
+                int index = text.IndexOf("Console.ReadLine()"); // находим индекс первого вхождения "ab()"
+                string replacement = args[count % args.Length]; // определяем элемент массива для замены
+                text = text.Substring(0, index) + replacement + text.Substring(index + 18); // заменяем "ab()"
+                count++; // увеличиваем счетчик замен
+            }
+            text = text.Replace("CourseWork", "CourseWork" + Counter.a.ToString());
+        }
 
         private void testBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -78,7 +102,7 @@ namespace CourseWork.Pages
                 if (textBox.LineCount > 1)
                 {
                     string previousLine = textBox.GetLineText(textBox.GetLineIndexFromCharacterIndex(textBox.CaretIndex) - 1); // Получаем предыдущую строку
-                    int tabCount = previousLine.Count(c => c.ToString() == "    "); // Считаем количество табуляций в предыдущей строке
+                    int tabCount = previousLine.Count(c => c == '\t'); // Считаем количество табуляций в предыдущей строке
                     string tabs = new string('\t', tabCount); // Создаем строку с нужным количеством табуляций
                     textBox.SelectedText = tabs; // Вставляем табуляции в начало новой строки
                 }
@@ -95,118 +119,6 @@ namespace CourseWork.Pages
                 textBox.SelectionLength = 0; // Снимаем выделение
                 e.Handled = true; // Отменяем стандартное поведение при нажатии TAB
             }
-        }
-        public MainPage(int id)
-        {
-            InitializeComponent();
-            currentUserId = id;
-            string code = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = 3;\n\t\tint b = int.Parse(Console.ReadLine());\n\t\tint c = a + b;\n\t\tConsole.WriteLine(\"a + b = \" + c);\n\t}\n}";
-            testBox.Text = code;
-        }
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string code = "int a = 3; int b = int.Parse(Console.ReadLine()); int c = a + b; Console.WriteLine(\"a + b = \" + c);";
-        //    CSharpCodeProvider provider = new CSharpCodeProvider();
-        //    CompilerParameters parameters = new CompilerParameters();
-        //    parameters.GenerateExecutable = false;
-        //    CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
-        //    if (results.Errors.Count > 0)
-        //    {
-        //        resultBox.Text = "Compilation failed.\n";
-        //        resultBox.Text += "Compilation errors:\n";
-        //        foreach (CompilerError error in results.Errors)
-        //        {
-        //            resultBox.Text += error.ErrorText + "\n";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        resultBox.Text = "Compilation succeeded!";
-        //        string output = RunAssembly(results.CompiledAssembly);
-        //        resultBox.Text += "Output:";
-        //        resultBox.Text += output;
-        //    }
-        //}
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // Код, который нужно скомпилировать
-            string code = @"
-            using System; 
-
-            public class CourseWork1
-            { 
-                public static void Main(string[] args) 
-                {
-                    Console.Write(""Введите a = "");
-                    int a = int.Parse(Console.ReadLine()); 
-                    Console.Write(""Введите b = "");
-                    int b = int.Parse(Console.ReadLine()); 
-                    int c = a + b; 
-                    Console.WriteLine(""a + b = "" + c); 
-                } 
-            }";
-
-            // Настройки компиляции
-            var provider = new CSharpCodeProvider();
-            var parameters = new CompilerParameters();
-            parameters.GenerateExecutable = true;
-            parameters.OutputAssembly = "CourseWork1.exe";
-
-            // Компиляция кода
-            CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
-
-            // Проверка на ошибки компиляции
-            if (results.Errors.HasErrors)
-            {
-                resultBox.Text = "Ошибка компиляции:";
-                foreach (CompilerError error in results.Errors)
-                {
-                    resultBox.Text += error.ErrorText;
-                }
-            }
-            else
-            {
-                resultBox.Text = "Код успешно скомпилирован";
-
-                // Запуск скомпилированной программы и получение выходных данных
-                var assembly = results.CompiledAssembly;
-                Type programType = assembly.GetType("CourseWork1");
-                var method = programType.GetMethod("Main");
-                var arguments = new string[] { "5" }; // Входные данные
-                var consoleOutput = new StringWriter();
-                Console.SetOut(consoleOutput);
-                method.Invoke(null, new object[] { arguments });
-                var outputText = consoleOutput.ToString();
-                Console.SetOut(Console.Out);
-
-                // Вывод результатов в текстовое поле
-                resultBox.Text = outputText;
-            }
-
-            Console.ReadLine();
-        }
-
-        static string RunAssembly(System.Reflection.Assembly assembly)
-        {
-            Type programType = assembly.GetType("Namespace.Program");
-            if (programType == null)
-            {
-                throw new InvalidOperationException("Program type not found");
-            }
-            System.Reflection.MethodInfo mainMethod = programType.GetMethod("Main", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-            if (mainMethod == null)
-            {
-                throw new InvalidOperationException("Main method not found");
-            }
-            List<string> outputLines = new List<string>();
-            Action<string> writeLineDelegate = (s) => outputLines.Add(s);
-            Console.SetOut(new StringWriter());
-            Console.SetError(new StringWriter());
-            mainMethod.Invoke(null, new object[] { });
-            Console.SetOut(null);
-            Console.SetError(null);
-            return string.Join(Environment.NewLine, outputLines);
         }
     }
 }

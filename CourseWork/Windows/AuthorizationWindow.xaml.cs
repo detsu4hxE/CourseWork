@@ -26,6 +26,23 @@ namespace CourseWork
         {
             InitializeComponent();
             FrameMain.Navigate(new Pages.LoginPage());
+            if (Counter.a == -1)
+            {
+                Counter.a++;
+                DeleteOldFiles();
+            }
+        }
+
+        private void DeleteOldFiles()
+        {
+            string fileName = Process.GetCurrentProcess().MainModule.FileName;
+            string filePath = Path.GetDirectoryName(fileName);
+            int a = 1;
+            while (File.Exists(filePath + @"\CourseWork" + a.ToString() + ".exe"))
+            {
+                File.Delete(filePath + @"\CourseWork" + a.ToString() + ".exe");
+                a++;
+            }
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {

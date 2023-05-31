@@ -178,3 +178,5 @@ C:\Users\10200374\source\repos\1\CourseWork\CourseWork\obj\Debug\CourseWork.cspr
 C:\Users\10200374\source\repos\1\CourseWork\CourseWork\obj\Debug\CourseWork.csproj.CopyComplete
 C:\Users\10200374\source\repos\1\CourseWork\CourseWork\obj\Debug\CourseWork.exe
 C:\Users\10200374\source\repos\1\CourseWork\CourseWork\obj\Debug\CourseWork.pdb
+C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\MainPage.g.cs
+C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\MainPage.baml
