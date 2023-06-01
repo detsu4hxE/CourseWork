@@ -5,16 +5,28 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CourseWork.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1000"
+      d:DesignHeight="500" d:DesignWidth="1200"
       Title="Проверка кода">
 
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <TextBox Name="testBox" AcceptsReturn="True" Width="700" Height="350" PreviewKeyDown="testBox_PreviewKeyDown"/>
-            <Button Width="30" Content="Go" Click="Button_Click"/>
-            <Border BorderBrush="{StaticResource ColorPrimary}" BorderThickness="1" Height="350">
-                <TextBlock Name="resultBox" Style="{StaticResource BlockCommon}" Width="200" Height="350"/>
-            </Border>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Name="subjectBox" Width="Auto" HorizontalAlignment="Center" Style="{StaticResource BlockTitle}"/>
+                <TextBlock Name="taskBox" Width="Auto" Margin="10 0" Style="{StaticResource BlockMainPage}" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox Name="testBox" AcceptsReturn="True" Width="700" Height="350" FontSize="13" VerticalContentAlignment="Top" PreviewKeyDown="testBox_PreviewKeyDown"/>
+                <StackPanel Orientation="Vertical" Height="350">
+                    <Button Width="150" Content="Получить задание" Click="NewTask_Click"/>
+                    <Button Width="150" Content="Проверить" Click="Check_Click"/>
+                    <Button Width="150" Content="Сохранить" Click="Save_Click"/>
+                </StackPanel>
+                <Border BorderBrush="{StaticResource ColorPrimary}" BorderThickness="1" Height="350">
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                        <TextBlock Name="resultBox" Style="{StaticResource BlockCommon}" FontSize="14" Width="200" Height="350"/>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

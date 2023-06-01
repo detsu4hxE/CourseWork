@@ -26,6 +26,7 @@ namespace CourseWork.Pages
     public partial class MainPage : Page
     {
         public int currentUserId;
+        public int taskId;
         public MainPage(int id)
         {
             InitializeComponent();
@@ -33,7 +34,20 @@ namespace CourseWork.Pages
             string code = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tint b = int.Parse(Console.ReadLine());\n\t\tint c = a + b;\n\t\tConsole.WriteLine(\"a + b = \" + c);\n\t}\n}";
             testBox.Text = code;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NewTask_Click(object sender, RoutedEventArgs e)
+        {
+            var tasks = App.Context.Tasks.ToList();
+            int count = tasks.Count;
+            Random rnd = new Random();
+            int randomTask = rnd.Next(0, count);
+            taskBox.Text = tasks[randomTask].description;
+            subjectBox.Text = tasks[randomTask].subjectName;
+        }
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            //Сохранение
+        }
+        private void Check_Click(object sender, RoutedEventArgs e)
         {
             string code = testBox.Text;
             Counter.a++;
@@ -51,10 +65,10 @@ namespace CourseWork.Pages
             if (results.Errors.HasErrors)
             {
                 Counter.a--;
-                resultBox.Text = "Ошибка компиляции:";
+                resultBox.Text = "Ошибка компиляции:\n";
                 foreach (CompilerError error in results.Errors)
                 {
-                    resultBox.Text += error.ErrorText;
+                    resultBox.Text += error.ErrorText + "\n";
                 }
             }
             else
@@ -81,43 +95,45 @@ namespace CourseWork.Pages
         
         public void ReplaceCR(ref string text)
         {
-            string[] args = { "args[0]", "args[1]", "args[2]" }; // массив для замены
-            int count = 0; // счетчик замен
-
+            int c = 0;
             while (text.Contains("Console.ReadLine()"))
             {
-                int index = text.IndexOf("Console.ReadLine()"); // находим индекс первого вхождения "ab()"
-                string replacement = args[count % args.Length]; // определяем элемент массива для замены
-                text = text.Substring(0, index) + replacement + text.Substring(index + 18); // заменяем "ab()"
-                count++; // увеличиваем счетчик замен
+                int index = text.IndexOf("Console.ReadLine()");
+                string replacement = $"args[{c}]";
+                text = text.Substring(0, index) + replacement + text.Substring(index + 18);
+                c++;
             }
             text = text.Replace("CourseWork", "CourseWork" + Counter.a.ToString());
         }
 
         private void testBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) // Проверяем, что была нажата клавиша Enter
+            if (e.Key == Key.Enter)
             {
-                TextBox textBox = (TextBox)sender;
-                if (textBox.LineCount > 1)
+                int lastLine = testBox.GetLineIndexFromCharacterIndex(testBox.CaretIndex);
+                string lastLineText = testBox.GetLineText(lastLine);
+                int tabsCount = lastLineText.TakeWhile(c => c == '\t').Count();
+                testBox.SelectedText = Environment.NewLine + new String('\t', tabsCount);
+                int a = 2;
+                if (lastLineText.TrimEnd().EndsWith("{") == true)
                 {
-                    string previousLine = textBox.GetLineText(textBox.GetLineIndexFromCharacterIndex(textBox.CaretIndex) - 1); // Получаем предыдущую строку
-                    int tabCount = previousLine.Count(c => c == '\t'); // Считаем количество табуляций в предыдущей строке
-                    string tabs = new string('\t', tabCount); // Создаем строку с нужным количеством табуляций
-                    textBox.SelectedText = tabs; // Вставляем табуляции в начало новой строки
+                    testBox.SelectedText += "\t";
+                    a++;
                 }
+                testBox.CaretIndex = testBox.SelectionStart + a + tabsCount;
+                e.Handled = true;
             }
-            if (e.Key == Key.Tab) // Проверяем, что была нажата клавиша TAB
+            if (e.Key == Key.Tab)
             {
                 TextBox textBox = (TextBox)sender;
-                int selectionStart = textBox.SelectionStart; // Получаем позицию курсора
-                int selectionLength = textBox.SelectionLength; // Получаем длину выделенного текста
-                string text = textBox.Text; // Получаем текст из текстового поля
-                string newText = text.Substring(0, selectionStart) + "\t" + text.Substring(selectionStart + selectionLength); // Формируем новый текст с символом табуляции
-                textBox.Text = newText; // Устанавливаем новый текст в текстовое поле
-                textBox.SelectionStart = selectionStart + 1; // Устанавливаем позицию курсора после символа табуляции
-                textBox.SelectionLength = 0; // Снимаем выделение
-                e.Handled = true; // Отменяем стандартное поведение при нажатии TAB
+                int selectionStart = textBox.SelectionStart;
+                int selectionLength = textBox.SelectionLength;
+                string text = textBox.Text;
+                string newText = text.Substring(0, selectionStart) + "\t" + text.Substring(selectionStart + selectionLength);
+                textBox.Text = newText;
+                textBox.SelectionStart = selectionStart + 1;
+                textBox.SelectionLength = 0;
+                e.Handled = true;
             }
         }
     }
