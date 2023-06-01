@@ -11,9 +11,9 @@ namespace CourseWork
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
-
+    using System.IO;
+    
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,15 +22,6 @@ namespace CourseWork
             this.Answers = new HashSet<Answers>();
             this.History = new HashSet<History>();
         }
-        public int user_id { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
-        public int role_id { get; set; }
-        public string surname { get; set; }
-        public string firstname { get; set; }
-        public string patronymic { get; set; }
-        public string email { get; set; }
-        public string image { get; set; }
         public string roleName
         {
             get
@@ -56,6 +47,16 @@ namespace CourseWork
             }
         }
 
+        public int user_id { get; set; }
+        public string login { get; set; }
+        public string password { get; set; }
+        public int role_id { get; set; }
+        public string surname { get; set; }
+        public string firstname { get; set; }
+        public string patronymic { get; set; }
+        public string email { get; set; }
+        public string image { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answers> Answers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="BaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Answers">
     <Key>
       <PropertyRef Name="answer_id" />
     </Key>
     <Property Name="answer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="user_id" Type="Int32" Nullable="false" />
-    <Property Name="task_id" Type="Int32" Nullable="false" />
+    <Property Name="task_id" Type="Int32" />
     <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Tasks" Relationship="Self.FK_Answers_Tasks" FromRole="Answers" ToRole="Tasks" />
@@ -26,7 +26,7 @@
       <PropertyRef Name="role_id" />
     </Key>
     <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
   </EntityType>
   <EntityType Name="Subjects">
@@ -52,30 +52,41 @@
       <PropertyRef Name="task_id" />
     </Key>
     <Property Name="task_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="subject_id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Tasks" FromRole="Tasks" ToRole="Answers" />
     <NavigationProperty Name="Subjects" Relationship="Self.FK_Tasks_Subjects" FromRole="Tasks" ToRole="Subjects" />
+    <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Tasks" FromRole="Tasks" ToRole="Tests" />
+  </EntityType>
+  <EntityType Name="Tests">
+    <Key>
+      <PropertyRef Name="test_id" />
+    </Key>
+    <Property Name="test_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="task_id" Type="Int32" Nullable="false" />
+    <Property Name="input" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="output" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Tasks" Relationship="Self.FK_Tests_Tasks" FromRole="Tests" ToRole="Tasks" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="user_id" />
     </Key>
     <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="role_id" Type="Int32" Nullable="false" />
-    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Users" FromRole="Users" ToRole="Answers" />
     <NavigationProperty Name="History" Relationship="Self.FK_History_Users" FromRole="Users" ToRole="History" />
     <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
   </EntityType>
   <Association Name="FK_Answers_Tasks">
-    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
@@ -144,6 +155,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Tests_Tasks">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="task_id" />
+      </Principal>
+      <Dependent Role="Tests">
+        <PropertyRef Name="task_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="baseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Answers" EntityType="Self.Answers" />
     <EntitySet Name="History" EntityType="Self.History" />
@@ -151,6 +176,7 @@
     <EntitySet Name="Subjects" EntityType="Self.Subjects" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Tasks" EntityType="Self.Tasks" />
+    <EntitySet Name="Tests" EntityType="Self.Tests" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <AssociationSet Name="FK_Answers_Tasks" Association="Self.FK_Answers_Tasks">
       <End Role="Tasks" EntitySet="Tasks" />
@@ -172,6 +198,10 @@
       <End Role="Subjects" EntitySet="Subjects" />
       <End Role="Tasks" EntitySet="Tasks" />
     </AssociationSet>
+    <AssociationSet Name="FK_Tests_Tasks" Association="Self.FK_Tests_Tasks">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="Tests" EntitySet="Tests" />
+    </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -188,11 +218,11 @@
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BaseModel.sp_helpdiagramdefinition_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BaseModel.sp_helpdiagrams_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>

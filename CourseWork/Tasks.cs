@@ -12,18 +12,15 @@ namespace CourseWork
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    
     public partial class Tasks
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tasks()
         {
             this.Answers = new HashSet<Answers>();
+            this.Tests = new HashSet<Tests>();
         }
-    
-        public int task_id { get; set; }
-        public string description { get; set; }
-        public int subject_id { get; set; }
         public string subjectName
         {
             get
@@ -33,9 +30,15 @@ namespace CourseWork
                 return subject.name;
             }
         }
+
+        public int task_id { get; set; }
+        public string description { get; set; }
+        public int subject_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answers> Answers { get; set; }
         public virtual Subjects Subjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tests> Tests { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="baseEntities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище BaseModelContainer" CdmEntityContainer="baseEntities">
     <EntitySetMapping Name="Answers">
-      <EntityTypeMapping TypeName="Model.Answers">
+      <EntityTypeMapping TypeName="BaseModel.Answers">
         <MappingFragment StoreEntitySet="Answers">
           <ScalarProperty Name="answer_id" ColumnName="answer_id" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -13,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="History">
-      <EntityTypeMapping TypeName="Model.History">
+      <EntityTypeMapping TypeName="BaseModel.History">
         <MappingFragment StoreEntitySet="History">
           <ScalarProperty Name="id_history" ColumnName="id_history" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -22,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="Model.Roles">
+      <EntityTypeMapping TypeName="BaseModel.Roles">
         <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="role_id" ColumnName="role_id" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -30,7 +30,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Subjects">
-      <EntityTypeMapping TypeName="Model.Subjects">
+      <EntityTypeMapping TypeName="BaseModel.Subjects">
         <MappingFragment StoreEntitySet="Subjects">
           <ScalarProperty Name="subject_id" ColumnName="subject_id" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -38,7 +38,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="Model.sysdiagrams">
+      <EntityTypeMapping TypeName="BaseModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -49,7 +49,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tasks">
-      <EntityTypeMapping TypeName="Model.Tasks">
+      <EntityTypeMapping TypeName="BaseModel.Tasks">
         <MappingFragment StoreEntitySet="Tasks">
           <ScalarProperty Name="task_id" ColumnName="task_id" />
           <ScalarProperty Name="description" ColumnName="description" />
@@ -57,8 +57,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="BaseModel.Tests">
+        <MappingFragment StoreEntitySet="Tests">
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+          <ScalarProperty Name="task_id" ColumnName="task_id" />
+          <ScalarProperty Name="input" ColumnName="input" />
+          <ScalarProperty Name="output" ColumnName="output" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="Model.Users">
+      <EntityTypeMapping TypeName="BaseModel.Users">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="login" ColumnName="login" />
@@ -72,20 +82,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище Model.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище Model.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище Model.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище Model.sp_helpdiagramdefinition">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище BaseModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище BaseModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище BaseModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище BaseModel.sp_helpdiagramdefinition">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+        <ComplexTypeMapping TypeName="BaseModel.sp_helpdiagramdefinition_Result">
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище Model.sp_helpdiagrams">
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище BaseModel.sp_helpdiagrams">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+        <ComplexTypeMapping TypeName="BaseModel.sp_helpdiagrams_Result">
           <ScalarProperty Name="Database" ColumnName="Database" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -94,7 +104,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Model.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Model.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище BaseModel.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище BaseModel.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

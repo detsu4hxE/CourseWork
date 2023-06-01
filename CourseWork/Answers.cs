@@ -12,14 +12,9 @@ namespace CourseWork
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    
     public partial class Answers
     {
-        public int answer_id { get; set; }
-        public int user_id { get; set; }
-        public int task_id { get; set; }
-        public string code { get; set; }
-        public System.DateTime date { get; set; }
         public string login
         {
             get
@@ -38,6 +33,15 @@ namespace CourseWork
                 return task.description;
             }
         }
+        public string subjectName
+        {
+            get
+            {
+                var tasks = App.Context.Tasks.ToList();
+                var task = tasks.Where(t => t.task_id == task_id).FirstOrDefault();
+                return task.subjectName;
+            }
+        }
         public string shortDate
         {
             get
@@ -45,7 +49,21 @@ namespace CourseWork
                 return date.ToString("f");
             }
         }
-
+        public int taskId
+        {
+            get
+            {
+                var tasks = App.Context.Tasks.ToList();
+                var task = tasks.Where(t => t.task_id == task_id).FirstOrDefault();
+                return task.task_id;
+            }
+        }
+        public int answer_id { get; set; }
+        public int user_id { get; set; }
+        public Nullable<int> task_id { get; set; }
+        public string code { get; set; }
+        public System.DateTime date { get; set; }
+    
         public virtual Tasks Tasks { get; set; }
         public virtual Users Users { get; set; }
     }

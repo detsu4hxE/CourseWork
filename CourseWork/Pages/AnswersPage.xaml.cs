@@ -88,7 +88,7 @@ namespace CourseWork.Pages
         {
             if (currentUserId != 0)
             {
-                NavigationService.Navigate(new AddEditAnswerPage(currentUserId));
+                NavigationService.Navigate(new MainPage(currentUserId));
             }
             else
             {
@@ -102,7 +102,7 @@ namespace CourseWork.Pages
             var currentAnswer = button.DataContext as Answers;
             if (currentUserId != 0)
             {
-                NavigationService.Navigate(new AddEditAnswerPage(currentAnswer, currentUserId));
+                NavigationService.Navigate(new MainPage(currentAnswer, currentUserId));
             }
             else
             {

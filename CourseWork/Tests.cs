@@ -12,26 +12,13 @@ namespace CourseWork
     using System;
     using System.Collections.Generic;
     
-    public partial class History
+    public partial class Tests
     {
-        public string Day
-        {
-            get
-            {
-                return date.ToString("D");
-            }
-        }
-        public string time
-        {
-            get
-            {
-                return date.ToString("t");
-            }
-        }
-        public int id_history { get; set; }
-        public int user_id { get; set; }
-        public System.DateTime date { get; set; }
+        public int test_id { get; set; }
+        public int task_id { get; set; }
+        public string input { get; set; }
+        public string output { get; set; }
     
-        public virtual Users Users { get; set; }
+        public virtual Tasks Tasks { get; set; }
     }
 }

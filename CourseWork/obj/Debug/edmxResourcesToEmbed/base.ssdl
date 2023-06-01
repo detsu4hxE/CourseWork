@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Хранилище BaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Answers">
     <Key>
       <PropertyRef Name="answer_id" />
     </Key>
     <Property Name="answer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="user_id" Type="int" Nullable="false" />
-    <Property Name="task_id" Type="int" Nullable="false" />
+    <Property Name="task_id" Type="int" />
     <Property Name="code" Type="nvarchar(max)" Nullable="false" />
     <Property Name="date" Type="date" Nullable="false" />
   </EntityType>
@@ -23,7 +23,7 @@
       <PropertyRef Name="role_id" />
     </Key>
     <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="100" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
@@ -47,25 +47,34 @@
       <PropertyRef Name="task_id" />
     </Key>
     <Property Name="task_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="subject_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tests">
+    <Key>
+      <PropertyRef Name="test_id" />
+    </Key>
+    <Property Name="test_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="task_id" Type="int" Nullable="false" />
+    <Property Name="input" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="output" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="user_id" />
     </Key>
     <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="role_id" Type="int" Nullable="false" />
-    <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
-    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="image" Type="nvarchar" MaxLength="50" />
+    <Property Name="surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="firstname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="patronymic" Type="nvarchar" MaxLength="100" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Answers_Tasks">
-    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
@@ -120,6 +129,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Tests_Tasks">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="task_id" />
+      </Principal>
+      <Dependent Role="Tests">
+        <PropertyRef Name="task_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Users_Roles">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -165,13 +188,14 @@
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <EntityContainer Name="Хранилище ModelContainer">
+  <EntityContainer Name="Хранилище BaseModelContainer">
     <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Answers_Tasks" Association="Self.FK_Answers_Tasks">
       <End Role="Tasks" EntitySet="Tasks" />
@@ -188,6 +212,10 @@
     <AssociationSet Name="FK_Tasks_Subjects" Association="Self.FK_Tasks_Subjects">
       <End Role="Subjects" EntitySet="Subjects" />
       <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tests_Tasks" Association="Self.FK_Tests_Tasks">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="Tests" EntitySet="Tests" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
       <End Role="Roles" EntitySet="Roles" />

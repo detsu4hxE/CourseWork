@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище BaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answers">
           <Key>
             <PropertyRef Name="answer_id" />
           </Key>
           <Property Name="answer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="task_id" Type="int" Nullable="false" />
+          <Property Name="task_id" Type="int" />
           <Property Name="code" Type="nvarchar(max)" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
         </EntityType>
@@ -28,7 +28,7 @@
             <PropertyRef Name="role_id" />
           </Key>
           <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -52,25 +52,34 @@
             <PropertyRef Name="task_id" />
           </Key>
           <Property Name="task_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="subject_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="test_id" />
+          </Key>
+          <Property Name="test_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="task_id" Type="int" Nullable="false" />
+          <Property Name="input" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="output" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
           <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="role_id" Type="int" Nullable="false" />
-          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="patronymic" Type="nvarchar" MaxLength="50" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="100" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="image" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Answers_Tasks">
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
@@ -122,6 +131,20 @@
             </Principal>
             <Dependent Role="Tasks">
               <PropertyRef Name="subject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tests_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="task_id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="task_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -170,13 +193,14 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="Хранилище ModelContainer">
+        <EntityContainer Name="Хранилище BaseModelContainer">
           <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Answers_Tasks" Association="Self.FK_Answers_Tasks">
             <End Role="Tasks" EntitySet="Tasks" />
@@ -194,6 +218,10 @@
             <End Role="Subjects" EntitySet="Subjects" />
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tests_Tasks" Association="Self.FK_Tests_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
@@ -203,14 +231,14 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="BaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Answers">
           <Key>
             <PropertyRef Name="answer_id" />
           </Key>
           <Property Name="answer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="task_id" Type="Int32" Nullable="false" />
+          <Property Name="task_id" Type="Int32" />
           <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Answers_Tasks" FromRole="Answers" ToRole="Tasks" />
@@ -230,7 +258,7 @@
             <PropertyRef Name="role_id" />
           </Key>
           <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
         </EntityType>
         <EntityType Name="Subjects">
@@ -256,30 +284,41 @@
             <PropertyRef Name="task_id" />
           </Key>
           <Property Name="task_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="subject_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Tasks" FromRole="Tasks" ToRole="Answers" />
           <NavigationProperty Name="Subjects" Relationship="Self.FK_Tasks_Subjects" FromRole="Tasks" ToRole="Subjects" />
+          <NavigationProperty Name="Tests" Relationship="Self.FK_Tests_Tasks" FromRole="Tasks" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="test_id" />
+          </Key>
+          <Property Name="test_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="Int32" Nullable="false" />
+          <Property Name="input" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="output" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tests_Tasks" FromRole="Tests" ToRole="Tasks" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
           <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="role_id" Type="Int32" Nullable="false" />
-          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Users" FromRole="Users" ToRole="Answers" />
           <NavigationProperty Name="History" Relationship="Self.FK_History_Users" FromRole="Users" ToRole="History" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Answers_Tasks">
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
@@ -348,6 +387,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tests_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="task_id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="baseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers" EntityType="Self.Answers" />
           <EntitySet Name="History" EntityType="Self.History" />
@@ -355,6 +408,7 @@
           <EntitySet Name="Subjects" EntityType="Self.Subjects" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_Answers_Tasks" Association="Self.FK_Answers_Tasks">
             <End Role="Tasks" EntitySet="Tasks" />
@@ -376,6 +430,10 @@
             <End Role="Subjects" EntitySet="Subjects" />
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tests_Tasks" Association="Self.FK_Tests_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -392,11 +450,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BaseModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BaseModel.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -423,9 +481,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="baseEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BaseModelContainer" CdmEntityContainer="baseEntities">
           <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="Model.Answers">
+            <EntityTypeMapping TypeName="BaseModel.Answers">
               <MappingFragment StoreEntitySet="Answers">
                 <ScalarProperty Name="answer_id" ColumnName="answer_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -436,7 +494,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="History">
-            <EntityTypeMapping TypeName="Model.History">
+            <EntityTypeMapping TypeName="BaseModel.History">
               <MappingFragment StoreEntitySet="History">
                 <ScalarProperty Name="id_history" ColumnName="id_history" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -445,7 +503,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="Model.Roles">
+            <EntityTypeMapping TypeName="BaseModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -453,7 +511,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
-            <EntityTypeMapping TypeName="Model.Subjects">
+            <EntityTypeMapping TypeName="BaseModel.Subjects">
               <MappingFragment StoreEntitySet="Subjects">
                 <ScalarProperty Name="subject_id" ColumnName="subject_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -461,7 +519,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagrams">
+            <EntityTypeMapping TypeName="BaseModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -472,7 +530,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="Model.Tasks">
+            <EntityTypeMapping TypeName="BaseModel.Tasks">
               <MappingFragment StoreEntitySet="Tasks">
                 <ScalarProperty Name="task_id" ColumnName="task_id" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -480,8 +538,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="BaseModel.Tests">
+              <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="test_id" ColumnName="test_id" />
+                <ScalarProperty Name="task_id" ColumnName="task_id" />
+                <ScalarProperty Name="input" ColumnName="input" />
+                <ScalarProperty Name="output" ColumnName="output" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Model.Users">
+            <EntityTypeMapping TypeName="BaseModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="login" ColumnName="login" />
@@ -495,20 +563,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище Model.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище Model.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище Model.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище Model.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище BaseModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище BaseModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище BaseModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище BaseModel.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="BaseModel.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище Model.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище BaseModel.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="BaseModel.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -517,8 +585,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Model.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Model.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище BaseModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище BaseModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

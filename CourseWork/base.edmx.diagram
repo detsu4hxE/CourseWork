@@ -4,19 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a9feec9f3e454a5e930b373bd0ce1dce" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Answers" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.History" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Roles" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Subjects" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Tasks" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_Answers_Tasks" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Answers_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_History_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Users_Roles" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Tasks_Subjects" ManuallyRouted="false" />
+      <Diagram DiagramId="f0b43854c1a44dbf91bb4ba123ce89a3" Name="Diagram1">
+        <EntityTypeShape EntityType="BaseModel.Answers" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.History" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Roles" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Subjects" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Tasks" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Tests" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Users" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="BaseModel.FK_Answers_Tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK_Answers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK_History_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK_Tasks_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK_Tests_Tasks" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

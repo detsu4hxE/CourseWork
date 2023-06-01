@@ -160,6 +160,9 @@
     <Compile Include="Tasks.cs">
       <DependentUpon>base.tt</DependentUpon>
     </Compile>
+    <Compile Include="Tests.cs">
+      <DependentUpon>base.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>base.tt</DependentUpon>
     </Compile>
