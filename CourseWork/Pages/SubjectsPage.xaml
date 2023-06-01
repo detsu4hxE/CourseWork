@@ -35,6 +35,9 @@
                                 <Button Name="BtnEdit" Click="BtnEdit_Click" Content="Редактировать"/>
                                 <Button Name="BtnDelete" Click="BtnDelete_Click" Content="Удалить"/>
                             </StackPanel>
+                            <StackPanel>
+                                <Separator/>
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </DataTemplate>

@@ -32,7 +32,7 @@ namespace CourseWork.Pages
         {
             InitializeComponent();
             currentUserId = id;
-            string code = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tint b = int.Parse(Console.ReadLine());\n\t\tint c = a + b;\n\t\tConsole.WriteLine(\"a + b = \" + c);\n\t}\n}";
+            string code = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tConsole.WriteLine(a);\n\t}\n}";
             codeBox.Text = code;
         }
         public MainPage(Answers answer, int id)
@@ -51,10 +51,17 @@ namespace CourseWork.Pages
             int count = tasks.Count;
             Random rnd = new Random();
             int randomTask = rnd.Next(0, count);
-            randomTask = 6;
             taskBox.Text = tasks[randomTask].description;
             subjectBox.Text = tasks[randomTask].subjectName;
             taskId = tasks[randomTask].task_id;
+        }
+        private void Clean_Click(object sender, RoutedEventArgs e)
+        {
+            taskId = 0;
+            taskBox.Text = "";
+            subjectBox.Text = "";
+            codeBox.Text = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tConsole.WriteLine(a);\n\t}\n}";
+            resultBox.Text = "";
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
@@ -90,6 +97,11 @@ namespace CourseWork.Pages
             if (!code.Contains("public class CourseWork"))
             {
                 resultBox.Text = "Необходима строка:\npublic class CourseWork";
+                return;
+            }
+            if (!code.Contains("public static void Main(string[] args)"))
+            {
+                resultBox.Text = "Необходима строка:\npublic static void Main(string[] args)";
                 return;
             }
             if (SubjectCheck() == false)

@@ -46,7 +46,34 @@ namespace CourseWork
         {
             get
             {
-                return date.ToString("f");
+                return date.ToString("D");
+            }
+        }
+        public string shortDescription
+        {
+            get
+            {
+                var task = App.Context.Tasks.Where(t => t.task_id == task_id).FirstOrDefault();
+                var tsd = task.description.Substring(0, Math.Min(task.description.Length, 100));
+                if (tsd != task.description)
+                {
+                    tsd += "...";
+                }
+                return tsd;
+            }
+        }
+        public string shortCode
+        {
+            get
+            {
+                var sc = code.Replace("using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\t", "");
+                sc = sc.Replace("\t", "");
+                sc = sc.Substring(0, Math.Min(code.Length, 100));
+                if (sc != code)
+                {
+                    sc += "...";
+                }
+                return sc;
             }
         }
         public int taskId

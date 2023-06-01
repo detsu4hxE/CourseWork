@@ -68,6 +68,17 @@
                     <Button Name="descriptionBox" Click="description_Click" MaxWidth="150" Style="{StaticResource Button2AdminWindow}"/>
                 </StackPanel>
             </Border>
+            <Border Style="{StaticResource BorderStyle}">
+                <StackPanel>
+                    <Button Content="Тесты" Click="btnTests_Click" Style="{StaticResource ButtonAdminWindow}"/>
+                    <Separator/>
+                    <Button Name="description2Box" Click="description2_Click" MaxWidth="150" Style="{StaticResource Button2AdminWindow}"/>
+                    <Separator/>
+                    <TextBlock Name="inputBox" Style="{StaticResource BlockMainPage}"/>
+                    <Separator/>
+                    <TextBlock Name="outputBox" Style="{StaticResource BlockMainPage}"/>
+                </StackPanel>
+            </Border>
         </StackPanel>
     </Grid>
 </Page>

@@ -106,5 +106,9 @@ namespace CourseWork.Windows
         {
             FrameMain.Navigate(new Pages.TasksPage());
         }
+        private void btnTests_Click(object sender, EventArgs e)
+        {
+            FrameMain.Navigate(new Pages.TestsPage());
+        }
     }
 }

@@ -113,7 +113,6 @@ namespace CourseWork.Pages
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             var currentAnswer = (sender as Button).DataContext as Answers;
-            var answers = App.Context.Answers.Where(a => a.task_id == currentAnswer.task_id);
             if (MessageBox.Show($"Вы уверены, что хотите удалить данный ответ?",
                 "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
@@ -148,7 +147,7 @@ namespace CourseWork.Pages
                     answers = answers.OrderByDescending(a => a.login).ToList();
                 }
             }
-            answers = answers.Where(r => r.description.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            answers = answers.Where(a => a.description.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             LViewAnswers.ItemsSource = null;
             LViewAnswers.ItemsSource = answers;
             int countFind = LViewAnswers.Items.Count;

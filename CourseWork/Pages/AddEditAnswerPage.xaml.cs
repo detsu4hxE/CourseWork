@@ -48,33 +48,6 @@ namespace CourseWork.Pages
             TBoxCode.Text = currentAnswer.code;
             dateBox.Text = currentAnswer.date.ToString();
         }
-        public AddEditAnswerPage(int id)
-        {
-            InitializeComponent();
-            currentUserId = id;
-            var users = App.Context.Users.Where(u => u.user_id == currentUserId).Select(u => u.login).ToList();
-            loginBox.ItemsSource = users;
-            loginBox.SelectedIndex = 0;
-            var tasks = App.Context.Tasks.Select(t => t.task_id).ToList();
-            taskBox.ItemsSource = tasks;
-            taskBox.SelectedIndex = 0;
-            dateBox.Text = DateTime.Now.ToString();
-        }
-        public AddEditAnswerPage(Answers answer, int id)
-        {
-            InitializeComponent();
-            currentUserId = id;
-            currentAnswer = answer;
-            Title = "Редактирование ответа";
-            var users = App.Context.Users.Where(u => u.user_id == currentUserId).Select(u => u.login).ToList();
-            loginBox.ItemsSource = users;
-            loginBox.SelectedItem = users.FirstOrDefault();
-            var tasks = App.Context.Tasks.Where(t => t.task_id == answer.task_id).Select(t => t.task_id).ToList();
-            taskBox.ItemsSource = tasks;
-            taskBox.SelectedItem = tasks.FirstOrDefault();
-            TBoxCode.Text = currentAnswer.code;
-            dateBox.Text = currentAnswer.date.ToString();
-        }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             var errorMessage = CheckErrors();
@@ -108,15 +81,7 @@ namespace CourseWork.Pages
                     App.Context.SaveChanges();
                     MessageBox.Show("Ответ успешно обновлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                if (currentUserId != 0)
-                {
-                    NavigationService.Navigate(new AnswersPage(currentUserId));
-
-                }
-                else
-                {
-                    NavigationService.Navigate(new AnswersPage());
-                }
+                NavigationService.Navigate(new AnswersPage());
             }
         }
         private string CheckErrors()

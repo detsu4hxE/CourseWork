@@ -37,10 +37,13 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding login}" TextAlignment="Center"/>
                                 <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding shortDate}" Width="120" TextAlignment="Center"/>
-                                <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding description}" FontSize="11" Width="200"/>
-                                <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding code}" FontSize="11" Width="200"/>
+                                <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding shortDescription}" Margin="10 0" FontSize="11" Width="200"/>
+                                <TextBlock Style="{StaticResource BlockDescription2}" Text="{Binding shortCode}" Margin="10 0" FontSize="11" Width="200"/>
                                 <Button Width="150" Name="BtnEdit" Click="BtnEdit_Click" Content="Редактировать"/>
                                 <Button Width="150" Name="BtnDelete" Click="BtnDelete_Click" Content="Удалить"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Separator/>
                             </StackPanel>
                         </Grid>
                     </Border>

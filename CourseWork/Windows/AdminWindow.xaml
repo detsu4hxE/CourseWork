@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork.Windows"
         mc:Ignorable="d"
-        Title="Администраторское окно" Height="650" Width="1000">
+        Title="Администраторское окно" Height="650" Width="1100">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="85"/>
@@ -46,6 +46,7 @@
             <Button Content="Ответы" Click="btnAnswers_Click" Style="{StaticResource BlockTable}"/>
             <Button Content="Темы" Click="btnSubjects_Click" Style="{StaticResource BlockTable}"/>
             <Button Content="Задания" Click="btnTasks_Click" Style="{StaticResource BlockTable}"/>
+            <Button Content="Тесты" Click="btnTests_Click" Style="{StaticResource BlockTable}"/>
         </StackPanel>
     </Grid>
 </Window>

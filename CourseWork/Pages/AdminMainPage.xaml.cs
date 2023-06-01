@@ -69,13 +69,13 @@ namespace CourseWork.Pages
                 ad += "...";
             }
             taskBox.Content = ad;
-            var ac = answer.code.Substring(0, Math.Min(answer.code.Length, 20));
-            if (ac != answer.code)
+            var ac = answer.shortCode.Substring(0, Math.Min(answer.shortCode.Length, 20));
+            if (ac != answer.shortCode)
             {
                 ac += "...";
             }
             codeBox.Text = ac;
-            dateBox.Text = answer.date.ToString("f");
+            dateBox.Text = answer.date.ToString("D");
             // Тема
             var subject = App.Context.Subjects.ToList().LastOrDefault();
             var sn = subject.name.Substring(0, Math.Min(subject.name.Length, 20));
@@ -98,6 +98,16 @@ namespace CourseWork.Pages
                 td += "...";
             }
             descriptionBox.Content = td;
+            // Тест
+            var test = App.Context.Tests.ToList().LastOrDefault();
+            var tsd = test.description.Substring(0, Math.Min(test.description.Length, 20));
+            if (tsd != test.description)
+            {
+                tsd += "...";
+            }
+            description2Box.Content = tsd;
+            inputBox.Text = test.input;
+            outputBox.Text = test.output;
         }
         private void btnRoles_Click(object sender, EventArgs e)
         {
@@ -118,6 +128,10 @@ namespace CourseWork.Pages
         private void btnTasks_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new TasksPage());
+        }
+        private void btnTests_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new TestsPage());
         }
         private void roleName_Click(object sender, EventArgs e)
         {
@@ -161,6 +175,12 @@ namespace CourseWork.Pages
         private void description_Click(object sender, EventArgs e)
         {
             var task = App.Context.Tasks.ToList().LastOrDefault();
+            NavigationService.Navigate(new AddEditTaskPage(task));
+        }
+        private void description2_Click(object sender, EventArgs e)
+        {
+            var test = App.Context.Tests.ToList().LastOrDefault();
+            var task = App.Context.Tasks.Where(t => t.task_id == test.task_id).FirstOrDefault();
             NavigationService.Navigate(new AddEditTaskPage(task));
         }
     }
