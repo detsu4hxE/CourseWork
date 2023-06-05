@@ -140,7 +140,7 @@ namespace CourseWork.Pages
         }
         private void login_Click(object sender, EventArgs e)
         {
-            var user = App.Context.Users.ToList().LastOrDefault();
+            var user = App.Context.Users.Where(u => u.user_id != currentUserId).ToList().LastOrDefault();
             NavigationService.Navigate(new AddEditUserPage(user, currentUserId));
         }
         private void roleUser_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace CourseWork.Pages
         public Answers currentAnswer = null;
         public int taskId = 0;
         public int answerCheck = 0;
+        public int inp = 0;
         public MainPage(int id)
         {
             InitializeComponent();
@@ -159,13 +160,21 @@ namespace CourseWork.Pages
                     foreach (var test in tests)
                     {
                         char[] separators = { ';', '.' };
-                        var inputParts = test.input.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                        string[] inputParts;
+                        if (inp != 0)
+                        {
+                            inputParts = test.input.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                        }
+                        else
+                        {
+                            inputParts = null;
+                        }
                         var consoleOutput = new StringWriter();
                         Console.SetOut(consoleOutput);
                         method.Invoke(null, new object[] { inputParts });
                         outputText = consoleOutput.ToString();
                         Console.SetOut(Console.Out);
-                        //MessageBox.Show(outputText + ", " + test.output);
+                        MessageBox.Show(outputText + ", " + test.output);
                         if (outputText.Trim() != test.output.Trim())
                         {
                             resultBox.Text = "Задание решено неверно";
@@ -230,12 +239,14 @@ namespace CourseWork.Pages
         public void ReplaceCR(ref string text)
         {
             int c = 0;
+            inp = 0;
             while (text.Contains("Console.ReadLine()"))
             {
                 int index = text.IndexOf("Console.ReadLine()");
                 string replacement = $"args[{c}]";
                 text = text.Substring(0, index) + replacement + text.Substring(index + 18);
                 c++;
+                inp = 1;
             }
             text = text.Replace("CourseWork", "CourseWork" + Counter.a.ToString());
         }
