@@ -187,3 +187,7 @@ C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\TestsPage.g.cs
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\TestsPage.baml
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditTestPage.g.cs
 C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\Pages\AddEditTestPage.baml
+C:\Users\10200374\source\repos\1\CourseWork\CourseWork\obj\Debug\Pages\AddEditTestPage.g.cs
+C:\Users\10200374\source\repos\1\CourseWork\CourseWork\obj\Debug\Pages\TestsPage.g.cs
+C:\Users\10200374\source\repos\1\CourseWork\CourseWork\obj\Debug\Pages\AddEditTestPage.baml
+C:\Users\10200374\source\repos\1\CourseWork\CourseWork\obj\Debug\Pages\TestsPage.baml

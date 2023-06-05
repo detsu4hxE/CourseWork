@@ -11,7 +11,7 @@
           </Key>
           <Property Name="answer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="task_id" Type="int" />
+          <Property Name="task_id" Type="int" Nullable="false" />
           <Property Name="code" Type="nvarchar(max)" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
         </EntityType>
@@ -61,7 +61,7 @@
           </Key>
           <Property Name="test_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="task_id" Type="int" Nullable="false" />
-          <Property Name="input" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="input" Type="nvarchar(max)" />
           <Property Name="output" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -79,7 +79,7 @@
           <Property Name="image" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Answers_Tasks">
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
@@ -238,7 +238,7 @@
           </Key>
           <Property Name="answer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="task_id" Type="Int32" />
+          <Property Name="task_id" Type="Int32" Nullable="false" />
           <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Answers_Tasks" FromRole="Answers" ToRole="Tasks" />
@@ -296,7 +296,7 @@
           </Key>
           <Property Name="test_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="task_id" Type="Int32" Nullable="false" />
-          <Property Name="input" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="input" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="output" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Tests_Tasks" FromRole="Tests" ToRole="Tasks" />
         </EntityType>
@@ -318,7 +318,7 @@
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Answers_Tasks">
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Answers" Type="Self.Answers" Multiplicity="*" />

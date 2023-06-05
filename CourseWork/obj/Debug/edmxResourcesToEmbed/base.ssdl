@@ -6,7 +6,7 @@
     </Key>
     <Property Name="answer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="user_id" Type="int" Nullable="false" />
-    <Property Name="task_id" Type="int" />
+    <Property Name="task_id" Type="int" Nullable="false" />
     <Property Name="code" Type="nvarchar(max)" Nullable="false" />
     <Property Name="date" Type="date" Nullable="false" />
   </EntityType>
@@ -56,7 +56,7 @@
     </Key>
     <Property Name="test_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="task_id" Type="int" Nullable="false" />
-    <Property Name="input" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="input" Type="nvarchar(max)" />
     <Property Name="output" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
@@ -74,7 +74,7 @@
     <Property Name="image" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Answers_Tasks">
-    <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Answers" Type="Self.Answers" Multiplicity="*" />

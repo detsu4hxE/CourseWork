@@ -26,6 +26,7 @@ namespace CourseWork.Pages
     public partial class MainPage : Page
     {
         public int currentUserId;
+        public Answers currentAnswer = null;
         public int taskId = 0;
         public int answerCheck = 0;
         public MainPage(int id)
@@ -38,16 +39,19 @@ namespace CourseWork.Pages
         public MainPage(Answers answer, int id)
         {
             InitializeComponent();
+            currentAnswer = answer;
             codeBox.Text = answer.code;
             subjectBox.Text = answer.subjectName;
             taskBox.Text = answer.description;
             currentUserId = id;
-            taskId = answer.taskId;
+            taskId = answer.task_id;
+            newTaskButton.Visibility = Visibility.Collapsed;
         }
         private void NewTask_Click(object sender, RoutedEventArgs e)
         {
             answerCheck = 0;
-            var tasks = App.Context.Tasks.ToList();
+            var tests = App.Context.Tests.Select(t => t.task_id).ToList();
+            var tasks = App.Context.Tasks.Where(t => tests.Contains(t.task_id)).ToList();
             int count = tasks.Count;
             Random rnd = new Random();
             int randomTask = rnd.Next(0, count);
@@ -57,17 +61,27 @@ namespace CourseWork.Pages
         }
         private void Clean_Click(object sender, RoutedEventArgs e)
         {
-            taskId = 0;
-            taskBox.Text = "";
-            subjectBox.Text = "";
-            codeBox.Text = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tConsole.WriteLine(a);\n\t}\n}";
-            resultBox.Text = "";
+            if (currentAnswer == null)
+            {
+                taskId = 0;
+                taskBox.Text = "";
+                subjectBox.Text = "";
+                codeBox.Text = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tConsole.WriteLine(a);\n\t}\n}";
+                resultBox.Text = "";
+            }
+            else
+            {
+                codeBox.Text = currentAnswer.code;
+                subjectBox.Text = currentAnswer.subjectName;
+                taskBox.Text = currentAnswer.description;
+                taskId = currentAnswer.task_id;
+            }
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             if (taskId == 0)
             {
-                MessageBox.Show($"Вы еще не получили задание");
+                MessageBox.Show("Вы еще не получили задание");
                 return;
             }
             if (answerCheck == 0)
@@ -84,6 +98,7 @@ namespace CourseWork.Pages
             };
             App.Context.Answers.Add(answer);
             App.Context.SaveChanges();
+            NavigationService.Navigate(new AnswersPage(currentUserId));
         }
         private void Check_Click(object sender, RoutedEventArgs e)
         {
@@ -143,7 +158,7 @@ namespace CourseWork.Pages
                     string outputText = "";
                     foreach (var test in tests)
                     {
-                        char[] separators = { ',', ';', '.' };
+                        char[] separators = { ';', '.' };
                         var inputParts = test.input.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                         var consoleOutput = new StringWriter();
                         Console.SetOut(consoleOutput);
@@ -175,16 +190,16 @@ namespace CourseWork.Pages
             switch (task.subjectName)
             {
                 case "Условия":
-                    b = (a.Contains("switch") || a.Contains("if") ? true : false);
+                    b = a.Contains("switch") || a.Contains("if") ? true : false;
                     break;
                 case "Циклы":
-                    b = (a.Contains("while") || a.Contains("for") || a.Contains("foreach") ? true : false);
+                    b = a.Contains("while") || a.Contains("for") || a.Contains("foreach") ? true : false;
                     break;
                 case "Одномерные массивы":
-                    b = (a.Contains("int[") || a.Contains("string[") ? true : false);
+                    b = a.Contains("int[") || a.Contains("string[") ? true : false;
                     break;
                 case "Многомерные массивы":
-                    b = (a.Contains("int[") || a.Contains("string[") ? true : false);
+                    b = a.Contains("int[") || a.Contains("string[") ? true : false;
                     break;
                 case "Функции":
                     var funcs = new string[] { "public static int", "public int", "public double", "public static double", "public string", "public static string" };

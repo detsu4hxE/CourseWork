@@ -76,18 +76,9 @@ namespace CourseWork
                 return sc;
             }
         }
-        public int taskId
-        {
-            get
-            {
-                var tasks = App.Context.Tasks.ToList();
-                var task = tasks.Where(t => t.task_id == task_id).FirstOrDefault();
-                return task.task_id;
-            }
-        }
         public int answer_id { get; set; }
         public int user_id { get; set; }
-        public Nullable<int> task_id { get; set; }
+        public int task_id { get; set; }
         public string code { get; set; }
         public System.DateTime date { get; set; }
     
