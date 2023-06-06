@@ -87,15 +87,31 @@ namespace CourseWork.Pages
 
         private void TBoxName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var tasks = App.Context.Tasks.ToList();
-            tasks = tasks.Where(t => t.description == TBoxDescription.Text && t.description != currentTask.description).ToList();
-            if (tasks.Count > 0)
+            if (currentTask != null)
             {
-                descriptionError.Visibility = Visibility.Visible;
+                var tasks = App.Context.Tasks.ToList();
+                tasks = tasks.Where(t => t.description == TBoxDescription.Text && t.description != currentTask.description).ToList();
+                if (tasks.Count > 0)
+                {
+                    descriptionError.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    descriptionError.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
-                descriptionError.Visibility = Visibility.Collapsed;
+                var tasks = App.Context.Tasks.ToList();
+                tasks = tasks.Where(t => t.description == TBoxDescription.Text).ToList();
+                if (tasks.Count > 0)
+                {
+                    descriptionError.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    descriptionError.Visibility = Visibility.Collapsed;
+                }
             }
         }
     }

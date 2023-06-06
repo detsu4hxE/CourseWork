@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\USR\Source\Repos\CourseWork\CourseWork\obj\Debug\
+C:\Users\10200374\source\repos\CourseWork\CourseWork\obj\Debug\
 CourseWork
 none
 false
 DEBUG;TRACE
-C:\Users\USR\Source\Repos\CourseWork\CourseWork\App.xaml
-221411504212
-2176114631
-40359328362
-20779242681
+C:\Users\10200374\source\repos\CourseWork\CourseWork\App.xaml
+221409248980
+2-572505707
+40734945783
+20503033337
 Pages\AddEditAnswerPage.xaml;Pages\AddEditRolePage.xaml;Pages\AddEditSubjectPage.xaml;Pages\AddEditTaskPage.xaml;Pages\AddEditTestPage.xaml;Pages\AddEditUserPage.xaml;Pages\AdminMainPage.xaml;Pages\AnswersPage.xaml;Pages\HistoryPage.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\ProfilePage.xaml;Pages\ProfileEditPage.xaml;Pages\RolesPage.xaml;Pages\SubjectsPage.xaml;Pages\TasksPage.xaml;Pages\TestsPage.xaml;Pages\UsersPage.xaml;Windows\AdminWindow.xaml;Windows\AuthorizationWindow.xaml;Pages\RegistrationPage.xaml;Windows\MainWindow.xaml;
 
 False

@@ -67,13 +67,14 @@ namespace CourseWork
             get
             {
                 var sc = code.Replace("using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\t", "");
+                sc = sc.Replace("using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{", "");
                 sc = sc.Replace("\t", "");
-                sc = sc.Substring(0, Math.Min(code.Length, 100));
+                sc = sc.Substring(0, Math.Min(sc.Length, 100));
                 if (sc != code)
                 {
                     sc += "...";
                 }
-                return sc;
+                return sc.Trim();
             }
         }
         public int answer_id { get; set; }

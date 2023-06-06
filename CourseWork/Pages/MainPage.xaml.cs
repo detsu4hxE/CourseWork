@@ -90,15 +90,28 @@ namespace CourseWork.Pages
                 MessageBox.Show("Перед сохранением необходимо провести проверку кода");
                 return;
             }
-            var answer = new Answers
+            if (currentAnswer == null)
             {
-                user_id = currentUserId,
-                task_id = taskId,
-                code = codeBox.Text,
-                date = DateTime.Now
-            };
-            App.Context.Answers.Add(answer);
-            App.Context.SaveChanges();
+                var answer = new Answers
+                {
+                    user_id = currentUserId,
+                    task_id = taskId,
+                    code = codeBox.Text,
+                    date = DateTime.Now
+                };
+                App.Context.Answers.Add(answer);
+                App.Context.SaveChanges();
+                MessageBox.Show("Ответ успешно создан", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                currentAnswer.user_id = currentUserId;
+                currentAnswer.task_id = taskId;
+                currentAnswer.code = codeBox.Text;
+                currentAnswer.date = DateTime.Now;
+                App.Context.SaveChanges();
+                MessageBox.Show("Ответ успешно обновлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             NavigationService.Navigate(new AnswersPage(currentUserId));
         }
         private void Check_Click(object sender, RoutedEventArgs e)

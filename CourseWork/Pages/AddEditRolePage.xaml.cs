@@ -84,15 +84,31 @@ namespace CourseWork.Pages
 
         private void TBoxName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var roles = App.Context.Roles.ToList();
-            roles = roles.Where(r => r.name == TBoxName.Text && r.name != currentRole.name).ToList();
-            if (roles.Count > 0)
+            if (currentRole != null)
             {
-                nameError.Visibility = Visibility.Visible;
+                var roles = App.Context.Roles.ToList();
+                roles = roles.Where(r => r.name == TBoxName.Text && r.name != currentRole.name).ToList();
+                if (roles.Count > 0)
+                {
+                    nameError.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    nameError.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
-                nameError.Visibility = Visibility.Collapsed;
+                var roles = App.Context.Roles.ToList();
+                roles = roles.Where(r => r.name == TBoxName.Text).ToList();
+                if (roles.Count > 0)
+                {
+                    nameError.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    nameError.Visibility = Visibility.Collapsed;
+                }
             }
         }
     }
