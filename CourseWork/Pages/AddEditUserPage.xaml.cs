@@ -106,6 +106,10 @@ namespace CourseWork.Pages
                     path = path + img;
                     File.Copy(selectefFileName, path);
                 }
+                else if (currentUser.image != null)
+                {
+                    img = currentUser.image;
+                }
                 if (currentUser == null)
                 {
                     var user = new Users

@@ -89,7 +89,7 @@ namespace CourseWork.Pages
             LViewTests.ItemsSource = null;
             LViewTests.ItemsSource = tests;
             int countFind = LViewTests.Items.Count;
-            TBlockItemCounter.Text = countFind.ToString() + " из " + App.Context.Answers.Count().ToString();
+            TBlockItemCounter.Text = countFind.ToString() + " из " + App.Context.Tests.Count().ToString();
             if (countFind < 1)
                 TBlockItemCounter.Text += "\nПо вашему запросу ничего не найдено. Измените фильтры.";
         }

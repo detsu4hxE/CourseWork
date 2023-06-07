@@ -65,7 +65,7 @@ namespace CourseWork.Pages
                 {
                     currentTest.task_id = int.Parse(taskBox.SelectedItem.ToString());
                     currentTest.input = TBoxInput.Text;
-                    currentTest.output = TBoxInput.Text;
+                    currentTest.output = TBoxOutput.Text;
                     App.Context.SaveChanges();
                     MessageBox.Show("Тест успешно обновлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -76,8 +76,6 @@ namespace CourseWork.Pages
         {
             var errorBuilder = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(TBoxInput.Text))
-                errorBuilder.AppendLine("Входные данные обязательны для заполнения;");
             if (string.IsNullOrWhiteSpace(TBoxOutput.Text))
                 errorBuilder.AppendLine("Выходные данные обязательны для заполнения;");
             if (errorBuilder.Length > 0)

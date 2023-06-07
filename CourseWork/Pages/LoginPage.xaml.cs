@@ -54,7 +54,7 @@ namespace CourseWork.Pages
                 }
                 else
                 {
-                    MessageBox.Show("Неверный регистр", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Неверный регистр", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -62,11 +62,11 @@ namespace CourseWork.Pages
                 currentUser = App.Context.Users.FirstOrDefault(p => p.login == TBoxLogin.Text);
                 if (currentUser != null)
                 {
-                    MessageBox.Show("Неверный пароль", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Неверный пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь не найден.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Пользователь не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

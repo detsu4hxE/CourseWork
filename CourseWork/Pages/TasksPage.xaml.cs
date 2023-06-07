@@ -68,7 +68,8 @@ namespace CourseWork.Pages
         {
             var currentTask = (sender as Button).DataContext as Tasks;
             var answers = App.Context.Answers.Where(a => a.task_id == currentTask.task_id);
-            if (MessageBox.Show($"Вы уверены, что хотите удалить задание: {currentTask.description}?\nКоличество удаляемых ответов: {answers.Count()}.",
+            var tests = App.Context.Tests.Where(t => t.task_id == currentTask.task_id);
+            if (MessageBox.Show($"Вы уверены, что хотите удалить задание: {currentTask.description}?\nКоличество удаляемых ответов: {answers.Count()}.\nКоличество удаляемых тестов: {tests.Count()}.",
                 "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 App.Context.Tasks.Remove(currentTask);
