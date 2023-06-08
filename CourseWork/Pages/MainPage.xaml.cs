@@ -187,7 +187,6 @@ namespace CourseWork.Pages
                         method.Invoke(null, new object[] { inputParts });
                         outputText = consoleOutput.ToString();
                         Console.SetOut(Console.Out);
-                        MessageBox.Show(outputText + ", " + test.output);
                         if (outputText.Trim() != test.output.Trim())
                         {
                             resultBox.Text = "Задание решено неверно";
