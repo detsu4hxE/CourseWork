@@ -20,7 +20,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource BlockCommon}" Text="Дата" TextAlignment="Center"></TextBlock>
-                <DatePicker Name="dateBox" Width="250" Background="{StaticResource ColorMain}" Foreground="{StaticResource ColorPrimary}">
+                <DatePicker Name="dateBox" Width="250" Background="{StaticResource ColorMain}" Foreground="{StaticResource ColorPrimary}" Margin="5 0 0 0">
                     <DatePicker.CalendarStyle>
                         <Style TargetType="{x:Type Calendar}">
                             <Setter Property="Background" Value="{StaticResource ColorMain}" />

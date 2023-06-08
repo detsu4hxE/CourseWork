@@ -94,7 +94,7 @@ namespace CourseWork.Pages
             {
                 users = users.OrderByDescending(u => u.login).ToList();
             }
-            users = users.Where(u => u.login.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            users = users.Where(u => u.login.ToLower().Contains(TBoxSearch.Text.ToLower()) || u.surname.ToLower().Contains(TBoxSearch.Text.ToLower()) || u.email.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             LViewUsers.ItemsSource = null;
             LViewUsers.ItemsSource = users;
             int countFind = LViewUsers.Items.Count;

@@ -140,14 +140,14 @@ namespace CourseWork.Pages
             {
                 if (ComboSortBy.SelectedIndex == 0)
                 {
-                    answers = answers.OrderBy(a => a.login).ToList();
+                    answers = answers.OrderByDescending(a => a.login).ToList();
                 }
                 else
                 {
-                    answers = answers.OrderByDescending(a => a.login).ToList();
+                    answers = answers.OrderBy(a => a.login).ToList();
                 }
             }
-            answers = answers.Where(a => a.description.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            answers = answers.Where(a => a.description.ToLower().Contains(TBoxSearch.Text.ToLower()) || a.login.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             LViewAnswers.ItemsSource = null;
             LViewAnswers.ItemsSource = answers;
             int countFind = LViewAnswers.Items.Count;
@@ -170,25 +170,25 @@ namespace CourseWork.Pages
                 {
                     if (ComboSortBy.SelectedIndex == 0)
                     {
-                        answers = answers.OrderByDescending(a => a.date).ToList();
+                        answers = answers.OrderBy(a => a.date).ToList();
                     }
                     else
                     {
-                        answers = answers.OrderBy(a => a.date).ToList();
+                        answers = answers.OrderByDescending(a => a.date).ToList();
                     }
                 }
                 else
                 {
                     if (ComboSortBy.SelectedIndex == 0)
                     {
-                        answers = answers.OrderBy(a => a.login).ToList();
+                        answers = answers.OrderByDescending(a => a.login).ToList();
                     }
                     else
                     {
-                        answers = answers.OrderByDescending(a => a.login).ToList();
+                        answers = answers.OrderBy(a => a.login).ToList();
                     }
                 }
-                answers = answers.Where(r => r.description.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+                answers = answers.Where(a => a.description.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
                 LViewAnswers.ItemsSource = null;
                 LViewAnswers.ItemsSource = answers;
                 int countFind = LViewAnswers.Items.Count;
