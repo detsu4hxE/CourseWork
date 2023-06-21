@@ -17,8 +17,12 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBox Name="codeBox" AcceptsReturn="True" Width="700" Height="350" FontSize="12" VerticalContentAlignment="Top" PreviewKeyDown="codeBox_PreviewKeyDown" TextChanged="codeBox_TextChanged"/>
                 <StackPanel Orientation="Vertical" Height="350">
+                    <ComboBox Name="subjectCBox" Width="150">
+                        <ComboBoxItem Content="Все темы"/>
+                    </ComboBox>
                     <Button Width="150" Name="newTaskButton" Content="Получить задание" Click="NewTask_Click"/>
                     <Button Width="150" Content="Сбросить" Click="Clean_Click"/>
+                    <Button Width="150" Content="Очистить код" Click="CleanCode_Click"/>
                     <Button Width="150" Content="Проверить" Click="Check_Click"/>
                     <Button Width="150" Content="Сохранить" Click="Save_Click"/>
                 </StackPanel>

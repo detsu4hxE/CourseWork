@@ -36,6 +36,12 @@ namespace CourseWork.Pages
             currentUserId = id;
             string code = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tConsole.WriteLine(a);\n\t}\n}";
             codeBox.Text = code;
+            var subjects = App.Context.Subjects.Select(s => s.name).ToList();
+            foreach (var subject in subjects)
+            {
+                subjectCBox.Items.Add(subject);
+            }
+            subjectCBox.SelectedIndex = 0;
         }
         public MainPage(Answers answer, int id)
         {
@@ -50,15 +56,39 @@ namespace CourseWork.Pages
         }
         private void NewTask_Click(object sender, RoutedEventArgs e)
         {
-            answerCheck = 0;
-            var tests = App.Context.Tests.Select(t => t.task_id).ToList();
-            var tasks = App.Context.Tasks.Where(t => tests.Contains(t.task_id)).ToList();
-            int count = tasks.Count;
-            Random rnd = new Random();
-            int randomTask = rnd.Next(0, count);
-            taskBox.Text = tasks[randomTask].description;
-            subjectBox.Text = tasks[randomTask].subjectName;
-            taskId = tasks[randomTask].task_id;
+            if (subjectCBox.SelectedIndex == 0)
+            {
+                answerCheck = 0;
+                var tests = App.Context.Tests.Select(t => t.task_id).ToList();
+                var tasks = App.Context.Tasks.Where(t => tests.Contains(t.task_id)).ToList();
+                int count = tasks.Count;
+                Random rnd = new Random();
+                int randomTask = rnd.Next(0, count);
+                taskBox.Text = tasks[randomTask].description;
+                subjectBox.Text = tasks[randomTask].subjectName;
+                taskId = tasks[randomTask].task_id;
+            }
+            else
+            {
+                answerCheck = 0;
+                var tests = App.Context.Tests.Select(t => t.task_id).ToList();
+                var tasks = App.Context.Tasks.Where(t => tests.Contains(t.task_id)).ToList();
+                tasks = tasks.Where(t => t.subjectName == subjectCBox.SelectedItem.ToString()).ToList();
+                int count = tasks.Count;
+                if (count != 0)
+                {
+                    Random rnd = new Random();
+                    int randomTask = rnd.Next(0, count);
+                    taskBox.Text = tasks[randomTask].description;
+                    subjectBox.Text = tasks[randomTask].subjectName;
+                    taskId = tasks[randomTask].task_id;
+                }
+                else
+                {
+                    subjectBox.Text = subjectCBox.SelectedItem.ToString();
+                    taskBox.Text = "Заданий с тестами на данную тему пока нет";
+                }
+            }
         }
         private void Clean_Click(object sender, RoutedEventArgs e)
         {
@@ -76,6 +106,18 @@ namespace CourseWork.Pages
                 subjectBox.Text = currentAnswer.subjectName;
                 taskBox.Text = currentAnswer.description;
                 taskId = currentAnswer.task_id;
+            }
+        }
+        private void CleanCode_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentAnswer == null)
+            {
+                codeBox.Text = "using System;\n\npublic class CourseWork\n{\n\tpublic static void Main(string[] args)\n\t{\n\t\tint a = int.Parse(Console.ReadLine());\n\t\tConsole.WriteLine(a);\n\t}\n}";
+                resultBox.Text = "";
+            }
+            else
+            {
+                codeBox.Text = currentAnswer.code;
             }
         }
         private void Save_Click(object sender, RoutedEventArgs e)
